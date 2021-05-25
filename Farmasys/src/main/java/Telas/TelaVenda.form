@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <EmptySpace min="0" pref="1007" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <EmptySpace min="0" pref="376" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="800" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jTextSubTotal" alignment="1" max="32767" attributes="0"/>
+                              <Component id="SubTotal" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="CancelarVenda" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="GerarVenda" min="-2" pref="107" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="Ajuste" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextAjuste" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ValorTotal" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextValorTotal" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jComboBoxMetodoPagamento" alignment="0" max="32767" attributes="0"/>
+                              <Component id="MetodoPagamento" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jTextCodCliente" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jTextCodFuncionario" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="Codfuncionario" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="CodCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="NomeCliente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="NomeFuncionario" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextNomeFuncionario" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTexNomeCliente" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="NomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTextCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTexNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="NomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Codfuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTextCodFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="SubTotal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextSubTotal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="Ajuste" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextAjuste" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextValorTotal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="MetodoPagamento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jComboBoxMetodoPagamento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="GerarVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CancelarVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="CodCliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cod. Cliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextCodCliente">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCodClienteActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="NomeCliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nome Cliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTexNomeCliente">
+        </Component>
+        <Component class="javax.swing.JLabel" name="Codfuncionario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cod. Funcionario"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextCodFuncionario">
+        </Component>
+        <Component class="javax.swing.JLabel" name="NomeFuncionario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nome Funcion&#xe1;rio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextNomeFuncionario">
+          <Properties>
+            <Property name="actionCommand" type="java.lang.String" value="null"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNomeFuncionarioActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="TabelaOr&#xe7;amento">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="5" rowCount="20">
+                    <Column editable="true" title="Cod. Produto" type="java.lang.Integer"/>
+                    <Column editable="false" title="Nome Produto" type="java.lang.String"/>
+                    <Column editable="true" title="Quantidade" type="java.lang.Integer"/>
+                    <Column editable="false" title="Valor unit&#xe1;rio" type="java.lang.Float"/>
+                    <Column editable="false" title="Valor total" type="java.lang.Float"/>
+                  </Table>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Default Cursor"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JComboBox" name="jComboBoxMetodoPagamento">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Selecione"/>
+                <StringItem index="1" value="Dinheiro"/>
+                <StringItem index="2" value="Cart&#xe3;o D&#xe9;bito"/>
+                <StringItem index="3" value="Cart&#xe3;o Cr&#xe9;dito"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="SubTotal">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sub-Total"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="MetodoPagamento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#xe9;todo de pagamento"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextSubTotal">
+        </Component>
+        <Component class="javax.swing.JLabel" name="Ajuste">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ajuste"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextAjuste">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextAjusteActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ValorTotal">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Valor Total"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextValorTotal">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextValorTotalActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="GerarVenda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gerar Venda"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GerarVendaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="CancelarVenda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarVendaActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
