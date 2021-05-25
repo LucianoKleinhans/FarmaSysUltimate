@@ -17,7 +17,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     public TelaRelatorioBusca() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +40,9 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButtonTelaCadastro = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Busca de relatório");
+        setAutoRequestFocus(false);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +131,11 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButtonTelaCadastro.setText("Tela Cadastro");
+        jButtonTelaCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTelaCadastroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,6 +197,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
@@ -213,7 +221,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCodigoActionPerformed
@@ -221,8 +229,14 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarCodigoActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        // TODO add your handling code here:
+        TelaRelatorioInfo frame = new TelaRelatorioInfo();
+        frame.setVisible(true);
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
+
+    private void jButtonTelaCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTelaCadastroActionPerformed
+        TelaCadastros frame = new TelaCadastros();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButtonTelaCadastroActionPerformed
 
     /**
      * @param args the command line arguments

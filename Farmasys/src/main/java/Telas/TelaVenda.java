@@ -49,7 +49,8 @@ public class TelaVenda extends javax.swing.JFrame {
         GerarVenda = new javax.swing.JButton();
         CancelarVenda = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Vendas");
 
         CodCliente.setText("Cod. Cliente");
 
@@ -259,6 +260,7 @@ public class TelaVenda extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodClienteActionPerformed
@@ -282,7 +284,7 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_GerarVendaActionPerformed
 
     private void CancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVendaActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_CancelarVendaActionPerformed
 
     /**

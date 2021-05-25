@@ -42,7 +42,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         NomeFuncionario = new javax.swing.JLabel();
         jTextValorTotal = new javax.swing.JTextField();
         jTextNomeFuncionario = new javax.swing.JTextField();
-        GerarVenda = new javax.swing.JButton();
+        jButtonFechar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaOrçamento = new javax.swing.JTable();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
@@ -51,7 +51,8 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         CodCliente1 = new javax.swing.JLabel();
         jTextCodCliente1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Informação de relatório");
 
         CodCliente.setText("Cod. Cliente");
 
@@ -94,10 +95,10 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
             }
         });
 
-        GerarVenda.setText("Fechar");
-        GerarVenda.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GerarVendaActionPerformed(evt);
+                jButtonFecharActionPerformed(evt);
             }
         });
 
@@ -192,7 +193,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                             .addComponent(jTextAjuste)
                             .addComponent(jTextValorTotal)
                             .addComponent(jTextValorTotal1)
-                            .addComponent(GerarVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButtonFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +242,6 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(SubTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,12 +258,13 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextValorTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(GerarVenda))
+                        .addComponent(jButtonFechar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodClienteActionPerformed
@@ -282,9 +283,9 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNomeFuncionarioActionPerformed
 
-    private void GerarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GerarVendaActionPerformed
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
@@ -340,13 +341,13 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     private javax.swing.JLabel CodCliente1;
     private javax.swing.JLabel Codfuncionario;
     private javax.swing.JLabel Codfuncionario1;
-    private javax.swing.JButton GerarVenda;
     private javax.swing.JLabel MetodoPagamento;
     private javax.swing.JLabel NomeCliente;
     private javax.swing.JLabel NomeFuncionario;
     private javax.swing.JLabel SubTotal;
     private javax.swing.JTable TabelaOrçamento;
     private javax.swing.JLabel ValorTotal;
+    private javax.swing.JButton jButtonFechar;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTexNomeCliente;

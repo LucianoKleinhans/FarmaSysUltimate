@@ -34,6 +34,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("FarmaSysUltimate");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImages(null);
 
         Login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Login.setText("Login");
@@ -85,6 +88,7 @@ public class TelaLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextLoginActionPerformed
@@ -92,7 +96,9 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextLoginActionPerformed
 
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
-        // TODO add your handling code here:
+        TelaPrincipal frame = new TelaPrincipal();
+        frame.setVisible(true);
+        dispose();
     }//GEN-LAST:event_EntrarActionPerformed
 
     /**

@@ -36,6 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadastros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("FarmaSysUltimate");
 
         jButtonRelatorio.setText("Relatório");
         jButtonRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -121,30 +122,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatorioActionPerformed
-        // TODO add your handling code here:
+        TelaRelatorioBusca frame = new TelaRelatorioBusca();
+        frame.setVisible(true);
     }//GEN-LAST:event_jButtonRelatorioActionPerformed
 
     private void jButtonCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoActionPerformed
-        // TODO add your handling code here:
+        TelaCadastroProduto frame = new TelaCadastroProduto();
+        frame.setVisible(true);
     }//GEN-LAST:event_jButtonCadastrarProdutoActionPerformed
 
     private void jButtonVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendaActionPerformed
-        // TODO add your handling code here:
+        TelaVenda frame = new TelaVenda();
+        frame.setVisible(true);
     }//GEN-LAST:event_jButtonVendaActionPerformed
 
     private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
-        // TODO add your handling code here:
+        TelaLogin frame = new TelaLogin();
+        frame.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrosActionPerformed
-        // TODO add your handling code here:
+        TelaCadastros frame = new TelaCadastros();
+        frame.setVisible(true);
     }//GEN-LAST:event_jButtonCadastrosActionPerformed
 
     /**
