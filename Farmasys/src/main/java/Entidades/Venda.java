@@ -18,9 +18,7 @@ public class Venda implements Serializable {
     @ManyToOne
     private Produto produto;
     @ManyToOne
-    private Funcionario funcionario;
-    @ManyToOne
-    private Cliente cliente;
+    private Pessoa pessoa;
 
     public Integer getId() {
         return id;
@@ -46,19 +44,11 @@ public class Venda implements Serializable {
         this.produto = produto;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }
