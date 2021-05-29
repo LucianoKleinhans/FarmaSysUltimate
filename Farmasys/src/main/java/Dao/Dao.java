@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class Dao {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Farmasys_jar_1.0-SNAPSHOTPU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_Farmasys_jar_1.0-SNAPSHOTPU");
     EntityManager em = emf.createEntityManager();
     EntityTransaction tx = em.getTransaction();
     

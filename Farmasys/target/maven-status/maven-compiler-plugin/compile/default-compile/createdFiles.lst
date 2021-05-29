@@ -20,6 +20,7 @@ Telas\TelaVenda$2.class
 Entidades\Receita.class
 Telas\TelaPrincipal$6.class
 Telas\TelaCadastros$1.class
+Entidades\Receita_.class
 Telas\TelaProdutos$3.class
 Telas\TelaCadastroProduto$1.class
 Telas\TelaLogin.class
@@ -37,13 +38,16 @@ Telas\TelaRelatorioBusca$11.class
 Telas\TelaVenda$6.class
 Telas\TelaCadastroPessoa$3.class
 Telas\TelaCadastros$7.class
+Entidades\RelatorioVenda_.class
 Telas\TelaRelatorioBusca$9.class
 Entidades\Venda.class
 Telas\TelaCadastros$2.class
+Entidades\Venda_.class
 Telas\TelaCadastroProduto$5.class
 Telas\TelaVenda$1.class
-Telas\TelaRelatorioInfo$10.class
+Entidades\Pessoa_.class
 Telas\TelaRelatorioInfo$4.class
+Entidades\TipoPagamento_.class
 Telas\TelaRelatorioInfo$1.class
 Telas\TelaCadastroProduto$2.class
 Telas\TelaPrincipal$2.class
@@ -55,6 +59,7 @@ Telas\TelaRelatorioInfo$8.class
 Telas\TelaVenda$5.class
 Telas\TelaLogin$2.class
 Telas\TelaCadastros$6.class
+Entidades\Endereco_.class
 Telas\TelaPrincipal$5.class
 Telas\TelaCadastroPessoa$7.class
 Telas\TelaVenda.class
@@ -71,6 +76,7 @@ Telas\TelaCadastroProduto$6.class
 Telas\TelaPrincipal.class
 Entidades\RelatorioVenda.class
 Telas\TelaProdutos$5.class
+Entidades\Produto_.class
 Telas\TelaCadastroProduto$3.class
 Telas\TelaCadastros$5.class
 Telas\TelaCadastroPessoa.class
