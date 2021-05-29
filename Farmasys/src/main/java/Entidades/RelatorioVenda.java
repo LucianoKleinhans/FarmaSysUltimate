@@ -20,8 +20,6 @@ public class RelatorioVenda implements Serializable{
     private Date dataVenda;
     @ManyToOne
     private Venda venda;
-    @ManyToOne
-    private Produto produto;
     @OneToOne
     private TipoPagamento tipoPagamento;
 
@@ -49,14 +47,6 @@ public class RelatorioVenda implements Serializable{
         this.venda = venda;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
     public TipoPagamento getTipoPagamento() {
         return tipoPagamento;
     }
@@ -64,4 +54,5 @@ public class RelatorioVenda implements Serializable{
     public void setTipoPagamento(TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
+    
 }

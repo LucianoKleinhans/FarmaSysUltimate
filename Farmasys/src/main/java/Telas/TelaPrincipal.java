@@ -5,9 +5,6 @@
  */
 package Telas;
 
-import Dao.Dao;
-
-
 /**
  *
  * @author Luciano
@@ -19,7 +16,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-        Dao dao = new Dao();
     }
 
     /**

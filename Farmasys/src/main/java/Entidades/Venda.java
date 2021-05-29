@@ -16,9 +16,9 @@ public class Venda implements Serializable {
     @OneToOne
     private TipoPagamento tipoPagamento;
     @ManyToOne
-    private Produto produto;
-    @ManyToOne
     private Pessoa pessoa;
+    @ManyToOne
+    private ItemVenda itemVenda;
 
     public Integer getId() {
         return id;
@@ -36,14 +36,6 @@ public class Venda implements Serializable {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
     public Pessoa getPessoa() {
         return pessoa;
     }
@@ -51,4 +43,13 @@ public class Venda implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+
+    public ItemVenda getItemVenda() {
+        return itemVenda;
+    }
+
+    public void setItemVenda(ItemVenda itemVenda) {
+        this.itemVenda = itemVenda;
+    }
+    
 }
