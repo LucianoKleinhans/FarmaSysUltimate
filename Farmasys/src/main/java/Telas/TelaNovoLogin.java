@@ -5,12 +5,16 @@
  */
 package Telas;
 
+import Entidades.Pessoa;
+import dao.Dao;
 /**
  *
  * @author Luciano
  */
 public class TelaNovoLogin extends javax.swing.JFrame {
 
+    Dao dao = new Dao();
+    Pessoa p = new Pessoa();
     /**
      * Creates new form TelaNovoLogin
      */
@@ -34,8 +38,8 @@ public class TelaNovoLogin extends javax.swing.JFrame {
         Cancelar = new javax.swing.JButton();
         Salvar2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(300, 300));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
         setResizable(false);
 
         InsiraNomeLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -57,6 +61,11 @@ public class TelaNovoLogin extends javax.swing.JFrame {
         });
 
         Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
 
         Salvar2.setText("Salvar");
         Salvar2.addActionListener(new java.awt.event.ActionListener() {
@@ -72,23 +81,24 @@ public class TelaNovoLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Cancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Salvar2)
-                        .addContainerGap())
                     .addComponent(InsiraNomeLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(InsiraSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 6, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(NomeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(NomeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Salvar2)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,23 +111,40 @@ public class TelaNovoLogin extends javax.swing.JFrame {
                 .addComponent(InsiraSenhaLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salvar2)
                     .addComponent(Cancelar))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    public Pessoa getPessoa() {
+        return p;
+    }
 
+    public void setPessoa(Pessoa p) {
+        this.p = p;
+    }
+    
     private void Salvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salvar2ActionPerformed
-        // TODO add your handling code here:
+        //set pessoa
+        p.setLoginFuncionario(NomeLogin.getText());
+        p.setSenhaLoginFuncionario(String.valueOf(SenhaLogin.getPassword()));
+        
+        dispose();//fecha a tela após salvar o cadastro
     }//GEN-LAST:event_Salvar2ActionPerformed
-
+    
     private void NomeLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NomeLoginActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_CancelarActionPerformed
 
     private void SenhaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaLoginActionPerformed
         // TODO add your handling code here:

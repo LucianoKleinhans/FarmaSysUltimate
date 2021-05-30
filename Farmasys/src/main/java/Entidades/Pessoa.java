@@ -18,7 +18,7 @@ public class Pessoa implements Serializable{
     private String email;
     @OneToOne
     private Endereco endereco;
-    private Boolean tipoPessoa;//Cliente ou funcionario (se nao for funcionario os elementos de login e senha receberão NULL)
+    private String tipoPessoa; //Cliente ou funcionario (se nao for funcionario os elementos de login e senha receberão NULL)
     //Login e senha funcionário//
     private String loginFuncionario;
     private String senhaLoginFuncionario;
@@ -70,12 +70,12 @@ public class Pessoa implements Serializable{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-    public Boolean getTipoPessoa() {
+    
+    public String getTipoPessoa() {
         return tipoPessoa;
     }
 
-    public void setTipoPessoa(Boolean tipoPessoa) {
+    public void setTipoPessoa(String tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
     }
 

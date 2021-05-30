@@ -5,11 +5,19 @@
  */
 package Telas;
 
+import Entidades.Endereco;
+import Entidades.Pessoa;
+import dao.Dao;
+
 /**
  *
  * @author Luciano
  */
 public class TelaCadastroPessoa extends javax.swing.JFrame {
+    
+    //conexão com o bancco
+    Dao dao = new Dao();
+    TelaNovoLogin frame = new TelaNovoLogin();
     
     private Object o;
     /**
@@ -24,7 +32,6 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextNome = new javax.swing.JTextField();
-        jComboBoxSelecionarTipoPessoa = new javax.swing.JComboBox<>();
         jTextCPF = new javax.swing.JTextField();
         jTextTelefone = new javax.swing.JTextField();
         jTextEmail = new javax.swing.JTextField();
@@ -49,6 +56,7 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
         jTextCidade = new javax.swing.JTextField();
         jComboBoxSelecionarEstado = new javax.swing.JComboBox<>();
         Cidade1 = new javax.swing.JLabel();
+        jComboBoxSelecionarTipoPessoa = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de pessoa");
@@ -57,13 +65,6 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
         jTextNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNomeActionPerformed(evt);
-            }
-        });
-
-        jComboBoxSelecionarTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Funcionário" }));
-        jComboBoxSelecionarTipoPessoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxSelecionarTipoPessoaActionPerformed(evt);
             }
         });
 
@@ -169,6 +170,13 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
 
         Cidade1.setText("Estado");
 
+        jComboBoxSelecionarTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Funcionário" }));
+        jComboBoxSelecionarTipoPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSelecionarTipoPessoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,7 +204,8 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTextNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxSelecionarTipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBoxSelecionarTipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
                     .addComponent(Endereco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -297,61 +306,79 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCPFActionPerformed
-        jTextCPF.getText();
     }//GEN-LAST:event_jTextCPFActionPerformed
 
     private void jTextRuaAvenidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextRuaAvenidaActionPerformed
-        jTextRuaAvenida.getText();
     }//GEN-LAST:event_jTextRuaAvenidaActionPerformed
 
     private void jTextNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeActionPerformed
-        jTextNome.getText();
     }//GEN-LAST:event_jTextNomeActionPerformed
 
     private void jTextEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextEmailActionPerformed
-        jTextEmail.getText();
     }//GEN-LAST:event_jTextEmailActionPerformed
 
     private void jTextNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNumeroActionPerformed
-        jTextNumero.getText();
     }//GEN-LAST:event_jTextNumeroActionPerformed
 
-    private void jComboBoxSelecionarTipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarTipoPessoaActionPerformed
-        //jComboBoxSelecionarTipoPessoa.
-    }//GEN-LAST:event_jComboBoxSelecionarTipoPessoaActionPerformed
-
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        //dispose();
+        dispose();
     }//GEN-LAST:event_SairActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        //Dao.salvar(o);
-        dispose();
+        
+        Pessoa p = new Pessoa();
+        Endereco e = new Endereco();
+        //set pessoa
+        p.setNome(jTextNome.getText());
+        p.setTipoPessoa((String) jComboBoxSelecionarTipoPessoa.getSelectedItem());
+        p.setCpf(jTextCPF.getText());
+        p.setTelefone(jTextTelefone.getText());
+        p.setEmail(jTextEmail.getText());
+        //set endereço
+        //e.setId();
+        e.setRuaAvenida(jTextRuaAvenida.getText());
+        e.setBairro(jTextBairro.getText());
+        e.setNumero(jTextNumero.getText());
+        e.setCep(jTextCEP.getText());
+        e.setCidade(jTextCidade.getText());
+        e.setUf((String) jComboBoxSelecionarEstado.getSelectedItem());
+        e.setComplemento(jTextComplemento.getText());
+        
+        p.setEndereco(e);
+        
+        p.setLoginFuncionario(frame.getPessoa().getLoginFuncionario());
+        p.setLoginFuncionario(frame.getPessoa().getSenhaLoginFuncionario());
+        
+        dao.salvar(e,p);//salvar endereco,pessoa        
+       
+        dispose();//fecha a tela após salvar o cadastro
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void jTextTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefoneActionPerformed
-        jTextTelefone.getText();
     }//GEN-LAST:event_jTextTelefoneActionPerformed
 
     private void jTextBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextBairroActionPerformed
-        jTextBairro.getText();
     }//GEN-LAST:event_jTextBairroActionPerformed
 
     private void jTextCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCEPActionPerformed
-        jTextCEP.getText();
     }//GEN-LAST:event_jTextCEPActionPerformed
 
     private void jTextComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextComplementoActionPerformed
-        jTextComplemento.getText();
     }//GEN-LAST:event_jTextComplementoActionPerformed
 
     private void jTextCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCidadeActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextCidadeActionPerformed
 
     private void jComboBoxSelecionarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarEstadoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxSelecionarEstadoActionPerformed
+
+    private void jComboBoxSelecionarTipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarTipoPessoaActionPerformed
+        if(!jComboBoxSelecionarTipoPessoa.getSelectedItem().equals("Funcionário")){
+        } else {
+            frame.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_jComboBoxSelecionarTipoPessoaActionPerformed
 
     /**
      * @param args the command line arguments

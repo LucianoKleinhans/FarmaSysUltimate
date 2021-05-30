@@ -24,6 +24,12 @@ public class Dao {
         em.merge(o);
         tx.commit();
     }
+    public void salvar(Object o,Object o2){
+        tx.begin();
+        em.merge(o);
+        em.merge(o2);
+        tx.commit();
+    }
     public void remove(Object o){
         tx.begin();
         em.remove(o);

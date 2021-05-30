@@ -15,7 +15,7 @@ public class Endereco implements Serializable{
     @OneToOne(mappedBy = "endereco")
     private Pessoa pessoa;
     private String ruaAvenida;
-    private Integer numero;
+    private String numero;
     private String bairro;
     private String cep;
     private String cidade;
@@ -46,11 +46,11 @@ public class Endereco implements Serializable{
         this.ruaAvenida = ruaAvenida;
     }
 
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
