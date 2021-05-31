@@ -110,7 +110,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextLoginActionPerformed
 
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
-        if(jTextLogin.getText().equals("admin")&&(jPasswordField1.getText().equals("123"))){
+        if(jTextLogin.getText().equals("")&&(jPasswordField1.getText().equals(""))){
             TelaPrincipal frame = new TelaPrincipal();
             frame.setVisible(true);
             dispose();
