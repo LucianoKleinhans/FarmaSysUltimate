@@ -5,6 +5,11 @@
  */
 package Telas;
 
+import Entidades.Produto;
+import dao.Dao;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luciano
@@ -16,8 +21,27 @@ public class TelaProdutos extends javax.swing.JFrame {
      */
     public TelaProdutos() {
         initComponents();
+        carregaLista();
     }
-
+    Dao dao = new Dao();
+    private void carregaLista(){
+        List <Produto> lista = dao.listaNative(Produto.class);
+        
+        String[] columnNames = new String[]{
+          "ID","Nome Poduto","Tarja","Classificação","Vencimento","Qtd Estoque","Valor"
+        };
+        Object[][] data = new Object[lista.size()][columnNames.length];
+        for (int i = 0; i < lista.size(); i++) {
+            data[i][0] = lista.get(i).getId();
+            data[i][1] = lista.get(i).getNome();
+            data[i][2] = lista.get(i).getTarja();
+            data[i][3] = lista.get(i).getClassificacao();
+            data[i][4] = lista.get(i).getDataVencimento();
+            data[i][5] = lista.get(i).getQuantidadeEstoque();       
+            data[i][6] = lista.get(i).getPreco();       
+        }
+        jTable1.setModel(new DefaultTableModel(data, columnNames));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,37 +60,12 @@ public class TelaProdutos extends javax.swing.JFrame {
         jButtonAdicionar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jButtonSelecionar = new javax.swing.JButton();
+        jButtonSelecionar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Produtos");
         setResizable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Codigo", "Nome Produto", "Classificação", "Data vencimento", "Quantidade", "Valor"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Float.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
 
@@ -79,10 +78,20 @@ public class TelaProdutos extends javax.swing.JFrame {
         jComboBoxCaixaSelecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome" }));
 
         jButtonRemover.setText("Remover");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
 
         jButtonEditar.setText("Editar");
 
         jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarActionPerformed(evt);
+            }
+        });
 
         jButtonSair.setText("Sair");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +107,13 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
+        jButtonSelecionar1.setText("Refresh");
+        jButtonSelecionar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelecionar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,6 +126,8 @@ public class TelaProdutos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSelecionar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSelecionar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSair)
@@ -127,7 +145,8 @@ public class TelaProdutos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSelecionar))
+                    .addComponent(jButtonSelecionar)
+                    .addComponent(jButtonSelecionar1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,6 +175,19 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
+
+    private void jButtonSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionar1ActionPerformed
+        carregaLista();
+    }//GEN-LAST:event_jButtonSelecionar1ActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
+        TelaCadastroProduto frame = new TelaCadastroProduto();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,6 +230,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSelecionar;
+    private javax.swing.JButton jButtonSelecionar1;
     private javax.swing.JComboBox<String> jComboBoxCaixaSelecao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

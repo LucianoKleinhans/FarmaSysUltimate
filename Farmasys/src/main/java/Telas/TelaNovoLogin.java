@@ -133,7 +133,7 @@ public class TelaNovoLogin extends javax.swing.JFrame {
     private void Salvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salvar2ActionPerformed
         //set pessoa
         p.setLoginFuncionario(NomeLogin.getText());
-        p.setSenhaLoginFuncionario(String.valueOf(SenhaLogin.getPassword()));
+        p.setSenhaLoginFuncionario(new String(SenhaLogin.getPassword()).trim());
         
         dispose();//fecha a tela após salvar o cadastro
     }//GEN-LAST:event_Salvar2ActionPerformed

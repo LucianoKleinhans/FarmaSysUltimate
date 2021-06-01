@@ -269,7 +269,7 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(RuaAvenida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextRuaAvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextRuaAvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -347,10 +347,10 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
         p.setEndereco(e);
         
         p.setLoginFuncionario(frame.getPessoa().getLoginFuncionario());
-        p.setLoginFuncionario(frame.getPessoa().getSenhaLoginFuncionario());
+        p.setSenhaLoginFuncionario(frame.getPessoa().getSenhaLoginFuncionario());
         
         dao.salvar(e,p);//salvar endereco,pessoa        
-       
+          
         dispose();//fecha a tela após salvar o cadastro
     }//GEN-LAST:event_SalvarActionPerformed
 

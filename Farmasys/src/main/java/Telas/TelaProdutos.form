@@ -33,6 +33,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jComboBoxCaixaSelecao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButtonSelecionar1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonSelecionar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -56,6 +58,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jComboBoxCaixaSelecao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonSelecionar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonSelecionar1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
@@ -83,16 +86,6 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
-                <Column editable="false" title="Codigo" type="java.lang.Integer"/>
-                <Column editable="false" title="Nome Produto" type="java.lang.String"/>
-                <Column editable="false" title="Classifica&#xe7;&#xe3;o" type="java.lang.String"/>
-                <Column editable="false" title="Data vencimento" type="java.lang.Object"/>
-                <Column editable="false" title="Quantidade" type="java.lang.Integer"/>
-                <Column editable="false" title="Valor" type="java.lang.Float"/>
-              </Table>
-            </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
@@ -157,6 +150,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Remover"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoverActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonEditar">
       <Properties>
@@ -167,6 +163,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Adicionar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAdicionarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSair">
       <Properties>
@@ -182,6 +181,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSelecionarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSelecionar1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Refresh"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSelecionar1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

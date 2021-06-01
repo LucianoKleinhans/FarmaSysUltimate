@@ -26,18 +26,24 @@ public class TelaCadastros extends javax.swing.JFrame {
     
     private void carregaLista(){
         Dao dao = new Dao();
-        List <Pessoa>lista = dao.listaNative(Pessoa.class);
-        
+        List <Pessoa> lista = dao.listaNative(Pessoa.class);
         
         String[] columnNames = new String[]{
-          "nome","cpf","codigo"  
+          "ID","Nome","CPF","Telefone","E-mail","Rua/Av","Num","Bairro","Cep","Cidade","UF"
         };
         Object[][] data = new Object[lista.size()][columnNames.length];
         for (int i = 0; i < lista.size(); i++) {
-            data[i][0] = lista.get(i).getNome();
-            data[i][1] = lista.get(i).getCpf();
-            data[i][2] = lista.get(i).getId();
-            
+            data[i][0] = lista.get(i).getId();
+            data[i][1] = lista.get(i).getNome();
+            data[i][2] = lista.get(i).getCpf();
+            data[i][3] = lista.get(i).getTelefone();
+            data[i][4] = lista.get(i).getEmail();
+            data[i][5] = lista.get(i).getEndereco().getRuaAvenida();
+            data[i][6] = lista.get(i).getEndereco().getNumero();
+            data[i][7] = lista.get(i).getEndereco().getBairro();
+            data[i][8] = lista.get(i).getEndereco().getCep();
+            data[i][9] = lista.get(i).getEndereco().getCidade();
+            data[i][10] = lista.get(i).getEndereco().getUf();           
         }
         jTable1.setModel(new DefaultTableModel(data, columnNames));
     } 
@@ -61,6 +67,7 @@ public class TelaCadastros extends javax.swing.JFrame {
         jButtonAdicionar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jButtonSelecionar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -135,6 +142,15 @@ public class TelaCadastros extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setMnemonic('_');
+        jButton1.setText("Refresh");
+        jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,6 +163,8 @@ public class TelaCadastros extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSelecionar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSair)
@@ -164,7 +182,8 @@ public class TelaCadastros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSelecionar))
+                    .addComponent(jButtonSelecionar)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,6 +224,10 @@ public class TelaCadastros extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        carregaLista();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,6 +264,7 @@ public class TelaCadastros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonEditar;

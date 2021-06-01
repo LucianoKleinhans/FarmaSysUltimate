@@ -15,7 +15,7 @@ public class Produto implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private Double preco;
+    private Float preco;
     private String tarja;
     private String classificacao;
     private String informacaoProduto;
@@ -39,11 +39,11 @@ public class Produto implements Serializable{
         this.nome = nome;
     }
 
-    public Double getPreco() {
+    public Float getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(Float preco) {
         this.preco = preco;
     }
 

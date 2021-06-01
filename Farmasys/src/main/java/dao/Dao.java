@@ -1,5 +1,6 @@
 package dao;
 
+import Telas.TelaCadastros;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
