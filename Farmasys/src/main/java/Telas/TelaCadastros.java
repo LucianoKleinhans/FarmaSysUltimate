@@ -5,6 +5,11 @@
  */
 package Telas;
 
+import Entidades.Pessoa;
+import dao.Dao;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luciano
@@ -16,8 +21,27 @@ public class TelaCadastros extends javax.swing.JFrame {
      */
     public TelaCadastros() {
         initComponents();
+        carregaLista();
     }
-
+    
+    private void carregaLista(){
+        Dao dao = new Dao();
+        List <Pessoa>lista = dao.listaNative(Pessoa.class);
+        
+        
+        String[] columnNames = new String[]{
+          "nome","cpf","codigo"  
+        };
+        Object[][] data = new Object[lista.size()][columnNames.length];
+        for (int i = 0; i < lista.size(); i++) {
+            data[i][0] = lista.get(i).getNome();
+            data[i][1] = lista.get(i).getCpf();
+            data[i][2] = lista.get(i).getId();
+            
+        }
+        jTable1.setModel(new DefaultTableModel(data, columnNames));
+    } 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

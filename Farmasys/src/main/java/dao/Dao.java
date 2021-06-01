@@ -36,7 +36,7 @@ public class Dao {
         tx.commit();
     }
     public List listaNative(Class c){
-        return em.createNativeQuery("select * from"+c.getSimpleName(),c).getResultList();
+        return em.createNativeQuery("select * from "+c.getSimpleName(),c).getResultList();
     }
     public Object findbyID(Class c,int id){
         return em.find(c, id);
