@@ -5,6 +5,9 @@
  */
 package Telas;
 
+import dao.Dao;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luciano
@@ -16,6 +19,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        Dao dao = new Dao();
     }
 
     /**
@@ -106,9 +110,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextLoginActionPerformed
 
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
-        TelaPrincipal frame = new TelaPrincipal();
-        frame.setVisible(true);
-        dispose();
+        if(jTextLogin.getText().equals("")&&(jPasswordField1.getText().equals(""))){
+            TelaPrincipal frame = new TelaPrincipal();
+            frame.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(rootPane,"Usuário ou senha Incorreto!");
+        }
     }//GEN-LAST:event_EntrarActionPerformed
 
     /**

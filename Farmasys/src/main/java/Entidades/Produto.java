@@ -1,12 +1,11 @@
 package Entidades;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,13 +15,13 @@ public class Produto implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    private Double preco;
+    private String tarja;
     private String classificacao;
     private String informacaoProduto;
     private Integer quantidadeEstoque;
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
-    @ManyToOne
-    private Receita receita;
 
     public Integer getId() {
         return id;
@@ -38,6 +37,22 @@ public class Produto implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public String getTarja() {
+        return tarja;
+    }
+
+    public void setTarja(String tarja) {
+        this.tarja = tarja;
     }
 
     public String getClassificacao() {
@@ -71,12 +86,5 @@ public class Produto implements Serializable{
     public void setDataVencimento(Date dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
-
-    public Receita getReceita() {
-        return receita;
-    }
-
-    public void setReceita(Receita receita) {
-        this.receita = receita;
-    } 
+    
 }

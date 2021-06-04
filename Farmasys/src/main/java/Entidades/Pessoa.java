@@ -18,9 +18,10 @@ public class Pessoa implements Serializable{
     private String email;
     @OneToOne
     private Endereco endereco;
+    private String tipoPessoa; //Cliente ou funcionario (se nao for funcionario os elementos de login e senha receberão NULL)
     //Login e senha funcionário//
-    private String login;
-    private String senha;
+    private String loginFuncionario;
+    private String senhaLoginFuncionario;
 
     public Integer getId() {
         return id;
@@ -69,21 +70,29 @@ public class Pessoa implements Serializable{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-    public String getLogin() {
-        return login;
+    
+    public String getTipoPessoa() {
+        return tipoPessoa;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setTipoPessoa(String tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getLoginFuncionario() {
+        return loginFuncionario;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setLoginFuncionario(String loginFuncionario) {
+        this.loginFuncionario = loginFuncionario;
     }
 
+    public String getSenhaLoginFuncionario() {
+        return senhaLoginFuncionario;
+    }
+
+    public void setSenhaLoginFuncionario(String senhaLoginFuncionario) {
+        this.senhaLoginFuncionario = senhaLoginFuncionario;
+    }
+    
 }
