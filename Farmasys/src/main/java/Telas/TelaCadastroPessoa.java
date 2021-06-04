@@ -13,11 +13,13 @@ import dao.Dao;
  *
  * @author Luciano
  */
-public class TelaCadastroPessoa extends javax.swing.JFrame {
+public class TelaCadastroPessoa extends javax.swing.JDialog {
     
-    //conexão com o bancco
+    //conexão com o banco
     Dao dao = new Dao();
     TelaNovoLogin frame = new TelaNovoLogin();
+    Pessoa p;
+    Endereco e;
     
     private Object o;
     /**
@@ -25,6 +27,33 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
      */
     public TelaCadastroPessoa() {
         initComponents();
+        setModal(true);
+        p = new Pessoa();
+        e = new Endereco();
+    }
+    public TelaCadastroPessoa(Pessoa pessoa) {
+        initComponents();
+        setModal(true);
+        
+        if(pessoa!=null){
+            p = pessoa;
+            e = p.getEndereco();
+            jTextNome.setText(p.getNome());
+            jComboBoxSelecionarTipoPessoa.setSelectedItem(p.getTipoPessoa());
+            jTextCPF.setText(p.getCpf());
+            jTextTelefone.setText(p.getTelefone());
+            jTextEmail.setText(p.getEmail());
+            jTextRuaAvenida.setText(e.getRuaAvenida());
+            jTextBairro.setText(e.getBairro());
+            jTextNumero.setText(e.getNumero());
+            jTextCEP.setText(e.getCep());
+            jTextCidade.setText(e.getCidade());
+            jComboBoxSelecionarEstado.setSelectedItem(e.getUf());
+            jTextComplemento.setText(e.getComplemento());
+        }else{
+            p = new Pessoa();
+            e = new Endereco();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -325,9 +354,6 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_SairActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        
-        Pessoa p = new Pessoa();
-        Endereco e = new Endereco();
         //set pessoa
         p.setNome(jTextNome.getText());
         p.setTipoPessoa((String) jComboBoxSelecionarTipoPessoa.getSelectedItem());
@@ -350,7 +376,6 @@ public class TelaCadastroPessoa extends javax.swing.JFrame {
         p.setSenhaLoginFuncionario(frame.getPessoa().getSenhaLoginFuncionario());
         
         dao.salvar(e,p);//salvar endereco,pessoa        
-          
         dispose();//fecha a tela após salvar o cadastro
     }//GEN-LAST:event_SalvarActionPerformed
 

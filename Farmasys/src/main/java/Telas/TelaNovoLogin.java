@@ -11,7 +11,7 @@ import dao.Dao;
  *
  * @author Luciano
  */
-public class TelaNovoLogin extends javax.swing.JFrame {
+public class TelaNovoLogin extends javax.swing.JDialog {
 
     Dao dao = new Dao();
     Pessoa p = new Pessoa();
@@ -20,6 +20,7 @@ public class TelaNovoLogin extends javax.swing.JFrame {
      */
     public TelaNovoLogin() {
         initComponents();
+        setModal(true);
     }
 
     /**
@@ -39,7 +40,6 @@ public class TelaNovoLogin extends javax.swing.JFrame {
         Salvar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
         setResizable(false);
 
         InsiraNomeLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
