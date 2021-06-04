@@ -23,7 +23,10 @@ public class ItemVenda implements Serializable {
     private Integer id;
     @ManyToOne
     private Produto produto;
+    @ManyToOne
+    private Venda venda;
     private Integer qtdProduto;
+    private Double valorUnitario;
 
     public Integer getId() {
         return id;
@@ -41,12 +44,28 @@ public class ItemVenda implements Serializable {
         this.produto = produto;
     }
 
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+    
     public Integer getQtdProduto() {
         return qtdProduto;
     }
 
     public void setQtdProduto(Integer qtdProduto) {
         this.qtdProduto = qtdProduto;
+    }
+
+    public Double getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(Double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
     
 }

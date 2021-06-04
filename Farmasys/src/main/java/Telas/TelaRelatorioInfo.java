@@ -14,6 +14,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     /**
      * Creates new form TelaRelatorio
      */
+    
     public TelaRelatorioInfo() {
         initComponents();
     }

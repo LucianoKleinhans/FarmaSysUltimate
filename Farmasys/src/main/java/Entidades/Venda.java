@@ -1,11 +1,14 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,9 +20,13 @@ public class Venda implements Serializable {
     private TipoPagamento tipoPagamento;
     @ManyToOne
     private Pessoa pessoa;
-    @ManyToOne
-    private ItemVenda itemVenda;
-
+    @OneToMany(mappedBy = "venda")
+    private List<ItemVenda> itensVenda;
+    
+    public Venda(){
+        itensVenda = new LinkedList<>();
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -44,12 +51,16 @@ public class Venda implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public ItemVenda getItemVenda() {
-        return itemVenda;
+    public List<ItemVenda> getItensVenda() {
+        return itensVenda;
     }
 
-    public void setItemVenda(ItemVenda itemVenda) {
-        this.itemVenda = itemVenda;
+    public void setItensVenda(List<ItemVenda> itensVenda) {
+        this.itensVenda = itensVenda;
+    }
+    
+    public void setItensVenda(ItemVenda itensVenda) {
+        this.itensVenda.add(itensVenda);
     }
     
 }
