@@ -22,10 +22,12 @@ public class TelaProdutos extends javax.swing.JFrame {
     public TelaProdutos() {
         initComponents();
         carregaLista();
+        
     }
     Dao dao = new Dao();
+    private List<Produto> lista;
     private void carregaLista(){
-        List <Produto> lista = dao.listaNative(Produto.class);
+        lista = dao.listaNative(Produto.class);
         
         String[] columnNames = new String[]{
           "ID","Nome Poduto","Tarja","Classificação","Vencimento","Qtd Estoque","Valor"
@@ -40,7 +42,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             data[i][5] = lista.get(i).getQuantidadeEstoque();       
             data[i][6] = lista.get(i).getPreco();       
         }
-        jTable1.setModel(new DefaultTableModel(data, columnNames));
+        TabelaProdutos.setModel(new DefaultTableModel(data, columnNames));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,9 +54,9 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaProdutos = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
-        jComboBoxCaixaSelecao = new javax.swing.JComboBox<>();
+        SelecaoCodigo = new javax.swing.JComboBox<>();
         jButtonRemover = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
@@ -62,12 +64,12 @@ public class TelaProdutos extends javax.swing.JFrame {
         jButtonSelecionar = new javax.swing.JButton();
         jButtonSelecionar1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produtos");
         setResizable(false);
 
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        TabelaProdutos.setToolTipText("");
+        jScrollPane1.setViewportView(TabelaProdutos);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +77,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxCaixaSelecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome" }));
+        SelecaoCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome" }));
 
         jButtonRemover.setText("Remover");
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +87,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         });
 
         jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
 
         jButtonAdicionar.setText("Adicionar");
         jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +131,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
                     .addComponent(jTextField1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SelecaoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonSelecionar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,7 +151,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SelecaoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSelecionar)
                     .addComponent(jButtonSelecionar1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -170,6 +177,7 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
@@ -181,13 +189,27 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSelecionar1ActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        
+        if(TabelaProdutos.getSelectedRow()>-1){
+            dao.remove(
+                lista.get(TabelaProdutos.getSelectedRow())
+            );
+        carregaLista();
+        }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         TelaCadastroProduto frame = new TelaCadastroProduto();
         frame.setVisible(true);
+        carregaLista();
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+        if(TabelaProdutos.getSelectedRow()>-1){
+        new TelaCadastroProduto(lista.get(TabelaProdutos.getSelectedRow())).setVisible(true);
+        carregaLista();
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,15 +247,15 @@ public class TelaProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> SelecaoCodigo;
+    private javax.swing.JTable TabelaProdutos;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSelecionar;
     private javax.swing.JButton jButtonSelecionar1;
-    private javax.swing.JComboBox<String> jComboBoxCaixaSelecao;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

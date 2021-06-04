@@ -42,6 +42,7 @@ Telas\TelaPrincipal$5.class
 Telas\TelaCadastroPessoa$14.class
 Telas\TelaCadastroPessoa$7.class
 Telas\TelaRelatorioBusca$8.class
+Telas\TelaProdutos$8.class
 Telas\TelaCadastroPessoa$1.class
 Telas\TelaProdutos$1.class
 Telas\TelaRelatorioBusca$1.class
@@ -58,6 +59,7 @@ Telas\TelaPrincipal$4.class
 Telas\TelaLogin$1.class
 Telas\TelaCadastroPessoa$13.class
 Telas\TelaCadastroPessoa$2.class
+Telas\TelaProdutos$7.class
 Telas\TelaRelatorioInfo$6.class
 Telas\TelaVenda$3.class
 Entidades\Produto.class

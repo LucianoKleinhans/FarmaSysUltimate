@@ -13,6 +13,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class Dao {
+
+    public static void remove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     private Connection connection;
     

@@ -12,15 +12,36 @@ import dao.Dao;
  *
  * @author Luciano
  */
-public class TelaCadastroProduto extends javax.swing.JFrame {
+public class TelaCadastroProduto extends javax.swing.JDialog {
 
     //conexão com banco
     Dao dao = new Dao();
+    Produto p;
     /**
      * Creates new form TelaCadastroProdutoo
      */
-    public TelaCadastroProduto() {
+    public TelaCadastroProduto(){
         initComponents();
+        setModal(true);
+        p = new Produto();
+        
+    }
+    public TelaCadastroProduto(Produto produto){
+        initComponents();
+        setModal(true);
+        
+        if(produto!=null){
+            p = produto;
+            jTextNomeProduto.setText(p.getNome());
+            jSpinnerQuantidade.setValue(p.getQuantidadeEstoque());
+            jTextFieldPreco.setText(p.getPreco().toString());
+            jComboBoxTarja.setSelectedItem(p.getTarja());
+            jComboBoxClassificacao.setSelectedItem(p.getClassificacao());
+            jDateChooser.setDate(p.getDataVencimento());
+            jTextInfoProduto.setText(p.getInformacaoProduto());
+        }else{
+            p = new Produto();
+        }
     }
 
     /**
@@ -215,10 +236,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxTarjaActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        Produto p = new Produto();
         //armazenagem de dados
         p.setNome(jTextNomeProduto.getText());
-        p.setPreco(Float.parseFloat(jTextFieldPreco.getText()));
+        p.setPreco(Double.parseDouble(jTextFieldPreco.getText()));
         p.setTarja((String)jComboBoxTarja.getSelectedItem());
         p.setClassificacao((String)jComboBoxClassificacao.getSelectedItem());
         p.setQuantidadeEstoque(jSpinnerQuantidade.getComponentCount());
@@ -229,8 +249,6 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         dao.salvar(p);
            
         dispose();
-        TelaCadastroProduto frame = new TelaCadastroProduto();
-        frame.setVisible(true);
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
