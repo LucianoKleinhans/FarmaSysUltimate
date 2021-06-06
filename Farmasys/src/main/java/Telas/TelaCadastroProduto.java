@@ -33,7 +33,7 @@ public class TelaCadastroProduto extends javax.swing.JDialog {
         if(produto!=null){
             p = produto;
             jTextNomeProduto.setText(p.getNome());
-            jSpinnerQuantidade.setValue(p.getQuantidadeEstoque());
+            jSpinnerQuantidade.setValue((p.getQuantidadeEstoque()));
             jTextFieldPreco.setText(p.getPreco().toString());
             jComboBoxTarja.setSelectedItem(p.getTarja());
             jComboBoxClassificacao.setSelectedItem(p.getClassificacao());
@@ -241,7 +241,7 @@ public class TelaCadastroProduto extends javax.swing.JDialog {
         p.setPreco(Double.parseDouble(jTextFieldPreco.getText()));
         p.setTarja((String)jComboBoxTarja.getSelectedItem());
         p.setClassificacao((String)jComboBoxClassificacao.getSelectedItem());
-        p.setQuantidadeEstoque(jSpinnerQuantidade.getComponentCount());
+        p.setQuantidadeEstoque((Integer)jSpinnerQuantidade.getValue());
         p.setDataVencimento(jDateChooser.getDate());
         p.setInformacaoProduto(jTextInfoProduto.getText());
         

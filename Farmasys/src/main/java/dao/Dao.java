@@ -49,6 +49,7 @@ public class Dao {
     public Object findbyNome(Class c,String nome){
         return em.find(c, nome);
     }
+    
     public Dao()  {
         try {
             this.connection = DriverManager.

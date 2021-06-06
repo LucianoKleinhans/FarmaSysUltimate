@@ -16,7 +16,6 @@ Telas\TelaProdutos$3.class
 Telas\TelaProdutos$6.class
 Telas\TelaCadastroProduto$1.class
 Telas\TelaLogin.class
-Telas\TelaVenda$14.class
 Telas\TelaCadastroPessoa$12.class
 Telas\TelaRelatorioInfo$5.class
 Dao\Dao.class
@@ -44,7 +43,6 @@ Telas\TelaPrincipal$5.class
 Telas\TelaCadastroPessoa$14.class
 Telas\TelaCadastroPessoa$7.class
 Telas\TelaRelatorioBusca$8.class
-Telas\TelaProdutos$8.class
 Telas\TelaCadastroPessoa$1.class
 Telas\TelaProdutos$1.class
 Telas\TelaRelatorioBusca$1.class
@@ -62,7 +60,6 @@ Telas\TelaPrincipal$4.class
 Telas\TelaLogin$1.class
 Telas\TelaCadastroPessoa$13.class
 Telas\TelaCadastroPessoa$2.class
-Telas\TelaProdutos$7.class
 Telas\TelaRelatorioInfo$6.class
 Telas\TelaVenda$3.class
 Entidades\Produto.class
@@ -77,7 +74,6 @@ Telas\TelaNovoLogin$4.class
 Telas\TelaRelatorioBusca$3.class
 Telas\TelaVenda$9.class
 Telas\TelaNovoLogin$1.class
-Telas\TelaCadastros$10.class
 Telas\TelaRelatorioBusca$6.class
 Telas\TelaRelatorioInfo.class
 Telas\TelaCadastros.class
@@ -94,7 +90,6 @@ Entidades\TipoPagamento_.class
 Telas\TelaVenda$10.class
 Telas\TelaCadastroProduto$2.class
 Telas\TelaPrincipal$2.class
-Telas\TelaCadastros$9.class
 Telas\TelaCadastroPessoa$4.class
 Entidades\Endereco.class
 Telas\TelaPrincipal$8.class
