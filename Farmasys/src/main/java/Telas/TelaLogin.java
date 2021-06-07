@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import Entidades.Pessoa;
 import dao.Dao;
 import javax.swing.JOptionPane;
 
@@ -21,6 +22,7 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         Dao dao = new Dao();
     }
+    Pessoa p;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,7 +112,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextLoginActionPerformed
 
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
-        if(jTextLogin.getText().equals("")&&(jPasswordField1.getText().equals(""))){
+        
+        if((jTextLogin.getText().equals(""))&&(jPasswordField1.getText().equals(""))){
             TelaPrincipal frame = new TelaPrincipal();
             frame.setVisible(true);
             dispose();

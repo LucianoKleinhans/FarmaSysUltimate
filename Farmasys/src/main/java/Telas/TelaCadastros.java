@@ -223,10 +223,9 @@ public class TelaCadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverActionPerformed
                 //teste
     private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
-        //Pessoa pessoa;
-        // TODO add your handling code here:
-        //if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-           //pessoa = (Pessoa) dao.findbyNome(Pessoa.class.getField(jtPesquisa.getText()));
+        Pessoa pessoa;
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+           pessoa = (Pessoa) dao.findbyName(Pessoa.class,String.valueOf(jtPesquisa.getText()));
     }//GEN-LAST:event_jtPesquisaKeyPressed
 
     /**

@@ -41,47 +41,49 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="606" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jtCodProduto" max="32767" attributes="0"/>
+                                  <Component id="Codfuncionario1" pref="91" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="Codfuncionario2" max="32767" attributes="0"/>
+                                  <Component id="jSpinnerQTD" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Adicionar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btRemover" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="278" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Codfuncionario1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jtCodProduto" min="-2" pref="114" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextQtdProduto" min="-2" pref="125" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="Adicionar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btRemover" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="CancelarVenda" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="GerarVenda" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="MetodoPagamento" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
-                                      <Component id="Codfuncionario2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jTextValorTotal" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextAjuste" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="jTextSubTotal" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="SubTotal" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="Ajuste" min="-2" pref="194" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
-                              <Component id="Ajuste" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="CancelarVenda" min="-2" pref="94" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="GerarVenda" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="SubTotal" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextSubTotal" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextAjuste" max="32767" attributes="0"/>
-                              <Component id="jTextValorTotal" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="MetodoPagamento" alignment="1" min="-2" pref="194" max="-2" attributes="0"/>
                           <Component id="jComboBoxMetodoPagamento" alignment="1" min="-2" pref="194" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -102,23 +104,34 @@
                   <Component id="jTexNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Codfuncionario2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Codfuncionario1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jSpinnerQTD" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jtCodProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Adicionar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btRemover" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SubTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Codfuncionario1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="SubTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextSubTotal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Ajuste" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextAjuste" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextValorTotal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="MetodoPagamento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxMetodoPagamento" min="-2" max="-2" attributes="0"/>
@@ -128,25 +141,7 @@
                           <Component id="CancelarVenda" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jtCodProduto" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="Codfuncionario2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextQtdProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Adicionar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btRemover" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="304" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" min="-2" pref="304" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -171,6 +166,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTexNomeCliente">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTexNomeClienteActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -187,7 +185,7 @@
                 <Column editable="false" title="Nome" type="java.lang.String"/>
                 <Column editable="true" title="Quantidade" type="java.lang.Integer"/>
                 <Column editable="false" title="Vr. unit&#xe1;rio" type="java.lang.Float"/>
-                <Column editable="false" title="Vr. total." type="java.lang.Float"/>
+                <Column editable="false" title="Vr. total" type="java.lang.Float"/>
               </Table>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -282,6 +280,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxMetodoPagamentoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -291,11 +292,6 @@
     <Component class="javax.swing.JTextField" name="jTextSubTotal">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextSubTotalActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextQtdProduto">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextQtdProdutoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="Codfuncionario1">
@@ -329,6 +325,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoverActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinnerQTD">
     </Component>
   </SubComponents>
 </Form>

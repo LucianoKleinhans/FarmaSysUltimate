@@ -34,7 +34,8 @@ public class TelaVenda extends javax.swing.JFrame {
     double vruni = 0;
     int qtd = 0;
     double subtotal = 0;
-    double subtotal2 = 0;
+    double valorTotalGeral = 0;
+    double ajuste = 0;
     
     ItemVenda iv;
     
@@ -51,7 +52,7 @@ public class TelaVenda extends javax.swing.JFrame {
         
         lista = dao.listaNative(ItemVenda.class);
         
-        String [] title = new String[]{"Código","Nome","Quantidade","Vr. unitário","Vr. total","sub"};
+        String [] title = new String[]{"Código","Nome","Quantidade","Vr. unitário","Vr. total"};
         Object[][]dados = new Object[venda.getItensVenda().size()][title.length];
         
         for (int i = 0; i < venda.getItensVenda().size(); i++){
@@ -63,12 +64,13 @@ public class TelaVenda extends javax.swing.JFrame {
             dados[i][2]=venda.getItensVenda().get(i).getQtdProduto();
             dados[i][3]=venda.getItensVenda().get(i).getValorUnitario();
             dados[i][4]=vrtotal;
-        }        
+            subtotal = subtotal + vrtotal;
+        }
+        jTextSubTotal.setText(subtotal+"");
+        venda.setValorTotal(subtotal);
+        jTextValorTotal.setText(venda.getValorTotal()+"");
+        subtotal = 0;
     TabelaOrçamento.setModel(new DefaultTableModel(dados,title));
-    }
-    
-    public void mult(int quantidade, Double valoruni){
- 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,12 +97,12 @@ public class TelaVenda extends javax.swing.JFrame {
         jComboBoxMetodoPagamento = new javax.swing.JComboBox<>();
         jTextAjuste = new javax.swing.JTextField();
         jTextSubTotal = new javax.swing.JTextField();
-        jTextQtdProduto = new javax.swing.JTextField();
         Codfuncionario1 = new javax.swing.JLabel();
         Adicionar = new javax.swing.JButton();
         Codfuncionario2 = new javax.swing.JLabel();
         jtCodProduto = new javax.swing.JTextField();
         btRemover = new javax.swing.JButton();
+        jSpinnerQTD = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vendas");
@@ -120,6 +122,12 @@ public class TelaVenda extends javax.swing.JFrame {
         });
 
         NomeCliente.setText("Nome Cliente");
+
+        jTexNomeCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTexNomeClienteActionPerformed(evt);
+            }
+        });
 
         TabelaOrçamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,7 +153,7 @@ public class TelaVenda extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Quantidade", "Vr. unitário", "Vr. total."
+                "Código", "Nome", "Quantidade", "Vr. unitário", "Vr. total"
             }
         ) {
             Class[] types = new Class [] {
@@ -196,16 +204,15 @@ public class TelaVenda extends javax.swing.JFrame {
         SubTotal.setText("Sub-Total");
 
         jComboBoxMetodoPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Dinheiro", "Cartão Débito", "Cartão Crédito" }));
+        jComboBoxMetodoPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMetodoPagamentoActionPerformed(evt);
+            }
+        });
 
         jTextSubTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextSubTotalActionPerformed(evt);
-            }
-        });
-
-        jTextQtdProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextQtdProdutoActionPerformed(evt);
             }
         });
 
@@ -255,38 +262,39 @@ public class TelaVenda extends javax.swing.JFrame {
                             .addComponent(NomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtCodProduto)
+                                    .addComponent(Codfuncionario1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Codfuncionario2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSpinnerQTD))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Adicionar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btRemover)
+                                .addGap(0, 278, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Codfuncionario1)
-                                    .addComponent(jtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextQtdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Adicionar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btRemover))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addComponent(Codfuncionario2)))))
-                        .addGap(0, 54, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ValorTotal)
-                                .addComponent(Ajuste, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(CancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(GerarVenda))
-                                .addComponent(SubTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextSubTotal)
-                                .addComponent(jTextAjuste)
-                                .addComponent(jTextValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(MetodoPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxMetodoPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(CancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(GerarVenda))
+                                        .addComponent(MetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ValorTotal)
+                                    .addComponent(jTextAjuste, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Ajuste, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(1, 1, 1))
+                            .addComponent(jComboBoxMetodoPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -301,22 +309,31 @@ public class TelaVenda extends javax.swing.JFrame {
                     .addComponent(jTextCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTexNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Codfuncionario2)
+                    .addComponent(Codfuncionario1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSpinnerQTD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Adicionar)
+                        .addComponent(btRemover)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SubTotal)
-                            .addComponent(Codfuncionario1))
+                        .addComponent(SubTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
                         .addComponent(Ajuste)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextAjuste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
                         .addComponent(ValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
                         .addComponent(MetodoPagamento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxMetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -324,20 +341,7 @@ public class TelaVenda extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(GerarVenda)
                             .addComponent(CancelarVenda)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Codfuncionario2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextQtdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Adicionar)
-                                    .addComponent(btRemover))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -354,25 +358,25 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarVendaActionPerformed
 
     private void GerarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarVendaActionPerformed
+        venda.setTipoPagamento((String)jComboBoxMetodoPagamento.getSelectedItem());
         dao.salvar(venda, pessoa);
+        dispose();
     }//GEN-LAST:event_GerarVendaActionPerformed
 
     private void jTextSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSubTotalActionPerformed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_jTextSubTotalActionPerformed
-
-    private void jTextQtdProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextQtdProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextQtdProdutoActionPerformed
 
     private void AdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarActionPerformed
         // TODO add your handling code here:
         if(produto!=null){
+            
             ItemVenda it = new ItemVenda();
             it.setProduto(produto);
-            it.setQtdProduto(Integer.parseInt(jTextQtdProduto.getText()));
+            it.setQtdProduto((Integer)jSpinnerQTD.getValue());
             it.setValorUnitario(produto.getPreco());
+            it.setVenda(venda);
+            venda.setPessoa(pessoa);
             venda.setItensVenda(it);
             atualizaTabela();
         }
@@ -386,7 +390,6 @@ public class TelaVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
             produto = (Produto) dao.findbyID(Produto.class,Integer.parseInt(jtCodProduto.getText()));
-        
     }//GEN-LAST:event_jtCodProdutoKeyPressed
 
     private void jTextValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextValorTotalActionPerformed
@@ -402,6 +405,14 @@ public class TelaVenda extends javax.swing.JFrame {
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btRemoverActionPerformed
+
+    private void jTexNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTexNomeClienteActionPerformed
+        jTexNomeCliente.setText(pessoa.getNome());
+    }//GEN-LAST:event_jTexNomeClienteActionPerformed
+
+    private void jComboBoxMetodoPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMetodoPagamentoActionPerformed
+         
+    }//GEN-LAST:event_jComboBoxMetodoPagamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,14 +467,12 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JButton btRemover;
     private javax.swing.JComboBox<String> jComboBoxMetodoPagamento;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinnerQTD;
     private javax.swing.JTextField jTexNomeCliente;
     private javax.swing.JTextField jTextAjuste;
     private javax.swing.JTextField jTextCodCliente;
-    private javax.swing.JTextField jTextQtdProduto;
     private javax.swing.JTextField jTextSubTotal;
     private javax.swing.JTextField jTextValorTotal;
     private javax.swing.JTextField jtCodProduto;
     // End of variables declaration//GEN-END:variables
-
-    
 }
