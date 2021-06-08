@@ -68,7 +68,7 @@ public class TelaVenda extends javax.swing.JFrame {
         }
         jTextSubTotal.setText(subtotal+"");
         venda.setValorTotal(subtotal);
-        jTextValorTotal.setText(venda.getValorTotal()+"");
+        jtValorTotal.setText(venda.getValorTotal()+"");
         subtotal = 0;
     TabelaOrçamento.setModel(new DefaultTableModel(dados,title));
     }
@@ -89,13 +89,11 @@ public class TelaVenda extends javax.swing.JFrame {
         TabelaOrçamento = new javax.swing.JTable();
         GerarVenda = new javax.swing.JButton();
         CancelarVenda = new javax.swing.JButton();
-        Ajuste = new javax.swing.JLabel();
-        jTextValorTotal = new javax.swing.JTextField();
+        jtValorTotal = new javax.swing.JTextField();
         MetodoPagamento = new javax.swing.JLabel();
         ValorTotal = new javax.swing.JLabel();
         SubTotal = new javax.swing.JLabel();
         jComboBoxMetodoPagamento = new javax.swing.JComboBox<>();
-        jTextAjuste = new javax.swing.JTextField();
         jTextSubTotal = new javax.swing.JTextField();
         Codfuncionario1 = new javax.swing.JLabel();
         Adicionar = new javax.swing.JButton();
@@ -189,11 +187,9 @@ public class TelaVenda extends javax.swing.JFrame {
             }
         });
 
-        Ajuste.setText("Ajuste");
-
-        jTextValorTotal.addActionListener(new java.awt.event.ActionListener() {
+        jtValorTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextValorTotalActionPerformed(evt);
+                jtValorTotalActionPerformed(evt);
             }
         });
 
@@ -280,21 +276,16 @@ public class TelaVenda extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(CancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(GerarVenda))
-                                        .addComponent(MetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ValorTotal)
-                                    .addComponent(jTextAjuste, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Ajuste, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(1, 1, 1))
-                            .addComponent(jComboBoxMetodoPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(CancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GerarVenda))
+                            .addComponent(jtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ValorTotal)
+                            .addComponent(jTextSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxMetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -326,14 +317,10 @@ public class TelaVenda extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Ajuste)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextAjuste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(ValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
                         .addComponent(MetodoPagamento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxMetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,6 +346,7 @@ public class TelaVenda extends javax.swing.JFrame {
 
     private void GerarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarVendaActionPerformed
         venda.setTipoPagamento((String)jComboBoxMetodoPagamento.getSelectedItem());
+        venda.setValorTotal(Double.parseDouble(jtValorTotal.getText()));
         dao.salvar(venda, pessoa);
         dispose();
     }//GEN-LAST:event_GerarVendaActionPerformed
@@ -392,9 +380,9 @@ public class TelaVenda extends javax.swing.JFrame {
             produto = (Produto) dao.findbyID(Produto.class,Integer.parseInt(jtCodProduto.getText()));
     }//GEN-LAST:event_jtCodProdutoKeyPressed
 
-    private void jTextValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextValorTotalActionPerformed
+    private void jtValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtValorTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextValorTotalActionPerformed
+    }//GEN-LAST:event_jtValorTotalActionPerformed
 
     private void jTextCodClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCodClienteKeyPressed
         // TODO add your handling code here:
@@ -453,7 +441,6 @@ public class TelaVenda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Adicionar;
-    private javax.swing.JLabel Ajuste;
     private javax.swing.JButton CancelarVenda;
     private javax.swing.JLabel CodCliente;
     private javax.swing.JLabel Codfuncionario1;
@@ -469,10 +456,9 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerQTD;
     private javax.swing.JTextField jTexNomeCliente;
-    private javax.swing.JTextField jTextAjuste;
     private javax.swing.JTextField jTextCodCliente;
     private javax.swing.JTextField jTextSubTotal;
-    private javax.swing.JTextField jTextValorTotal;
     private javax.swing.JTextField jtCodProduto;
+    private javax.swing.JTextField jtValorTotal;
     // End of variables declaration//GEN-END:variables
 }

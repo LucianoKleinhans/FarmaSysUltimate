@@ -46,9 +46,6 @@ public class Dao {
     public Object findbyID(Class c,int id){
         return em.find(c, id);
     }
-    public Object findbyName(Class c,String nome){
-        return em.find(c, nome);
-    }
     
     public Dao()  {
         try {

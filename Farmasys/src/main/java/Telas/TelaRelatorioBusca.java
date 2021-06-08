@@ -5,6 +5,13 @@
  */
 package Telas;
 
+import Entidades.ItemVenda;
+import Entidades.Venda;
+import dao.Dao;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luciano
@@ -16,8 +23,30 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
      */
     public TelaRelatorioBusca() {
         initComponents();
+        carregaLista();
     }
+       
+    private List <ItemVenda> lista;
+    private ItemVenda itemVenda;
+    private Venda venda;
+    Dao dao = new Dao();
     
+    
+    private void carregaLista(){
+        lista = dao.listaNative(ItemVenda.class);
+        
+        String[] columnNames = new String[]{
+            "Código","Nome produto","Quantidade","Vr unitário"
+        };
+        Object[][] data = new Object[lista.size()][columnNames.length];
+        for (int i = 0; i < lista.size(); i++) {
+            data[i][0] = lista.get(i).getVenda().getId();
+            data[i][1] = lista.get(i).getProduto().getNome();
+            data[i][2] = lista.get(i).getQtdProduto();
+            data[i][3] = lista.get(i).getValorUnitario();
+        }
+        TabelaBusca.setModel(new DefaultTableModel(data, columnNames));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +66,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         jButtonSair = new javax.swing.JButton();
         jButtonBuscarCodigo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaBusca = new javax.swing.JTable();
         jButtonTelaCadastro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -80,6 +109,11 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField2KeyPressed(evt);
+            }
+        });
 
         jButtonSelecionar.setText("Selecionar");
         jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +136,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -128,8 +162,8 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        TabelaBusca.setToolTipText("");
+        jScrollPane1.setViewportView(TabelaBusca);
 
         jButtonTelaCadastro.setText("Tela Cadastro");
         jButtonTelaCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +265,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
 
     private void jButtonBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCodigoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonBuscarCodigoActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
@@ -242,6 +277,12 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         TelaCadastros frame = new TelaCadastros();
         frame.setVisible(true);
     }//GEN-LAST:event_jButtonTelaCadastroActionPerformed
+
+    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+            itemVenda = (ItemVenda) dao.findbyID(ItemVenda.class,Integer.parseInt(jTextField2.getText()));
+    }//GEN-LAST:event_jTextField2KeyPressed
 
     /**
      * @param args the command line arguments
@@ -279,6 +320,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TabelaBusca;
     private javax.swing.JButton jButtonBuscarCodigo;
     private javax.swing.JButton jButtonBuscarData;
     private javax.swing.JButton jButtonSair;
@@ -289,7 +331,6 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,26 +64,18 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="CancelarVenda" min="-2" pref="94" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="GerarVenda" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="MetodoPagamento" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jTextValorTotal" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextAjuste" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="jTextSubTotal" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="SubTotal" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="Ajuste" min="-2" pref="194" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="CancelarVenda" min="-2" pref="94" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="GerarVenda" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jComboBoxMetodoPagamento" alignment="1" min="-2" pref="194" max="-2" attributes="0"/>
+                          <Component id="jtValorTotal" min="-2" pref="194" max="-2" attributes="0"/>
+                          <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextSubTotal" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
+                          <Component id="SubTotal" min="-2" pref="194" max="-2" attributes="0"/>
+                          <Component id="MetodoPagamento" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
+                          <Component id="jComboBoxMetodoPagamento" min="-2" pref="194" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -124,14 +116,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextSubTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Ajuste" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextAjuste" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextValorTotal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jtValorTotal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="MetodoPagamento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxMetodoPagamento" min="-2" max="-2" attributes="0"/>
@@ -244,14 +232,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarVendaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="Ajuste">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ajuste"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextValorTotal">
+    <Component class="javax.swing.JTextField" name="jtValorTotal">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextValorTotalActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtValorTotalActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="MetodoPagamento">
@@ -286,8 +269,6 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextAjuste">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextSubTotal">
       <Events>

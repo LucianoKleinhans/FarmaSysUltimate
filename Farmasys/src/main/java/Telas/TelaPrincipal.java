@@ -170,7 +170,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVendaActionPerformed
 
     private void jButtonRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatorioActionPerformed
-        TelaRelatorioBusca frame = new TelaRelatorioBusca();
+        TelaRelatorioInfo frame = new TelaRelatorioInfo();
         frame.setVisible(true);
     }//GEN-LAST:event_jButtonRelatorioActionPerformed
 

@@ -51,7 +51,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextCodCliente" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Component id="jtCodVenda" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                           <Component id="CodCliente1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="Codfuncionario1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jFormattedTextField1" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
@@ -89,7 +89,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtCodVenda" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTexNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextCodCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -144,9 +144,10 @@
         <Property name="text" type="java.lang.String" value="Sub-Total"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextCodCliente">
+    <Component class="javax.swing.JTextField" name="jtCodVenda">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCodClienteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtCodVendaActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtCodVendaKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="MetodoPagamento">

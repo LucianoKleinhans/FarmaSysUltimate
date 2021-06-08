@@ -30,6 +30,7 @@ Telas\TelaCadastros$7.class
 Entidades\Venda_.class
 Telas\TelaCadastroProduto$5.class
 Entidades\Pessoa_.class
+Telas\TelaRelatorioInfo$10.class
 Telas\TelaRelatorioInfo$1.class
 Telas\TelaProdutos$2.class
 Telas\TelaRelatorioBusca$7.class
@@ -40,6 +41,7 @@ Telas\TelaLogin$2.class
 Telas\TelaCadastros$6.class
 Entidades\Endereco_.class
 Telas\TelaPrincipal$5.class
+Telas\TelaRelatorioBusca$12.class
 Telas\TelaCadastroPessoa$14.class
 Telas\TelaCadastroPessoa$7.class
 Telas\TelaRelatorioBusca$8.class

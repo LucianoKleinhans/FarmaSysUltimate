@@ -5,6 +5,13 @@
  */
 package Telas;
 
+import Entidades.ItemVenda;
+import Entidades.Venda;
+import dao.Dao;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luciano
@@ -14,9 +21,30 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     /**
      * Creates new form TelaRelatorio
      */
+    int codCliente = 0;
+    Dao dao = new Dao();
+    private ItemVenda itemVenda;
+    private List <ItemVenda> lista;
     
     public TelaRelatorioInfo() {
         initComponents();
+        
+    }
+    
+    private void carregaLista(){
+        lista = dao.listaNative(ItemVenda.class);
+        
+        String[] columnNames = new String[]{
+            "Código","Nome produto","Quantidade","Vr unitário"
+        };
+        Object[][] data = new Object[lista.size()][columnNames.length];
+            
+            data[codCliente][0] = lista.get(codCliente).getVenda().getId();
+            data[codCliente][1] = lista.get(codCliente).getProduto().getNome();
+            data[codCliente][2] = lista.get(codCliente).getQtdProduto();
+            data[codCliente][3] = lista.get(codCliente).getValorUnitario();
+            
+        TabelaOrçamento.setModel(new DefaultTableModel(data, columnNames));
     }
 
     /**
@@ -30,7 +58,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
 
         CodCliente = new javax.swing.JLabel();
         SubTotal = new javax.swing.JLabel();
-        jTextCodCliente = new javax.swing.JTextField();
+        jtCodVenda = new javax.swing.JTextField();
         MetodoPagamento = new javax.swing.JLabel();
         NomeCliente = new javax.swing.JLabel();
         jTextSubTotal = new javax.swing.JTextField();
@@ -60,9 +88,14 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
 
         SubTotal.setText("Sub-Total");
 
-        jTextCodCliente.addActionListener(new java.awt.event.ActionListener() {
+        jtCodVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextCodClienteActionPerformed(evt);
+                jtCodVendaActionPerformed(evt);
+            }
+        });
+        jtCodVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtCodVendaKeyPressed(evt);
             }
         });
 
@@ -195,7 +228,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CodCliente1)
                             .addComponent(Codfuncionario1)
                             .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,7 +257,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                     .addComponent(CodCliente1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTexNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextCodCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -265,9 +298,9 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodClienteActionPerformed
+    private void jtCodVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCodVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextCodClienteActionPerformed
+    }//GEN-LAST:event_jtCodVendaActionPerformed
 
     private void jTextAjusteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAjusteActionPerformed
         // TODO add your handling code here:
@@ -292,6 +325,14 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     private void jTextCodCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodCliente1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCodCliente1ActionPerformed
+
+    private void jtCodVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCodVendaKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+            //itemVenda = (ItemVenda) dao.findbyID(ItemVenda.class,Integer.parseInt((jtCodVenda.getText())));
+            codCliente = Integer.parseInt((jtCodVenda.getText()));
+            carregaLista();
+    }//GEN-LAST:event_jtCodVendaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -347,11 +388,11 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTexNomeCliente;
     private javax.swing.JTextField jTextAjuste;
-    private javax.swing.JTextField jTextCodCliente;
     private javax.swing.JTextField jTextCodCliente1;
     private javax.swing.JTextField jTextCodFuncionario;
     private javax.swing.JTextField jTextNomeFuncionario;
     private javax.swing.JTextField jTextSubTotal;
     private javax.swing.JTextField jTextValorTotal;
+    private javax.swing.JTextField jtCodVenda;
     // End of variables declaration//GEN-END:variables
 }
