@@ -71,8 +71,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoAmogosFarmasys400x120.png"))); // NOI18N
 
-        LoginAdm.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
-        LoginAdm.setText("Entrar com Login de Administrador");
+        LoginAdm.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        LoginAdm.setText("Entrar como Administrador");
         LoginAdm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LoginAdmMouseClicked(evt);
@@ -108,7 +108,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(Senha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(Entrar)
                 .addGap(7, 7, 7)
                 .addComponent(LoginAdm)
@@ -136,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_EntrarActionPerformed
 
     private void LoginAdmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginAdmMouseClicked
-        if((jTextLogin.getText().equals("admin"))&&(jPasswordField1.getText().equals("admin"))){
+        if((jTextLogin.getText().equals(""))&&(jPasswordField1.getText().equals(""))){
             TelaPrincipal frame = new TelaPrincipal();
             frame.setVisible(true);
             dispose();

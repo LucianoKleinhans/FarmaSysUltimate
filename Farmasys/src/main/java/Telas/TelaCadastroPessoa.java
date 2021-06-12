@@ -38,16 +38,16 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
         if(pessoa!=null){
             p = pessoa;
             e = p.getEndereco();
-            jTextNome.setText(p.getNome());
+            jTextNome.setText(p.getNome().toUpperCase());
             jComboBoxSelecionarTipoPessoa.setSelectedItem(p.getTipoPessoa());
-            jTextCPF.setText(p.getCpf());
-            jTextTelefone.setText(p.getTelefone());
+            jFormattedCPF.setText(p.getCpf());
+            jFormattedTelefone.setText(p.getTelefone());
             jTextEmail.setText(p.getEmail());
-            jTextRuaAvenida.setText(e.getRuaAvenida());
-            jTextBairro.setText(e.getBairro());
+            jTextRuaAvenida.setText(e.getRuaAvenida().toUpperCase());
+            jTextBairro.setText(e.getBairro().toUpperCase());
             jTextNumero.setText(e.getNumero());
-            jTextCEP.setText(e.getCep());
-            jTextCidade.setText(e.getCidade());
+            jFormattedCEP.setText(e.getCep());
+            jTextCidade.setText(e.getCidade().toUpperCase());
             jComboBoxSelecionarEstado.setSelectedItem(e.getUf());
             jTextComplemento.setText(e.getComplemento());
         }else{
@@ -61,12 +61,9 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
     private void initComponents() {
 
         jTextNome = new javax.swing.JTextField();
-        jTextCPF = new javax.swing.JTextField();
-        jTextTelefone = new javax.swing.JTextField();
         jTextEmail = new javax.swing.JTextField();
         jTextRuaAvenida = new javax.swing.JTextField();
         jTextBairro = new javax.swing.JTextField();
-        jTextCEP = new javax.swing.JTextField();
         jTextNumero = new javax.swing.JTextField();
         jTextComplemento = new javax.swing.JTextField();
         Sair = new javax.swing.JButton();
@@ -86,6 +83,9 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
         jComboBoxSelecionarEstado = new javax.swing.JComboBox<>();
         Cidade1 = new javax.swing.JLabel();
         jComboBoxSelecionarTipoPessoa = new javax.swing.JComboBox<>();
+        jFormattedCPF = new javax.swing.JFormattedTextField();
+        jFormattedTelefone = new javax.swing.JFormattedTextField();
+        jFormattedCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de pessoa");
@@ -94,18 +94,6 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
         jTextNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNomeActionPerformed(evt);
-            }
-        });
-
-        jTextCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextCPFActionPerformed(evt);
-            }
-        });
-
-        jTextTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextTelefoneActionPerformed(evt);
             }
         });
 
@@ -124,12 +112,6 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
         jTextBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextBairroActionPerformed(evt);
-            }
-        });
-
-        jTextCEP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextCEPActionPerformed(evt);
             }
         });
 
@@ -206,30 +188,36 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
             }
         });
 
+        try {
+            jFormattedCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedCPFActionPerformed(evt);
+            }
+        });
+
+        try {
+            jFormattedTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jTextTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(127, 127, 127)
-                                .addComponent(Telefone)))
-                        .addGap(148, 148, 148)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Email)
-                                .addGap(266, 266, 266))
-                            .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTextNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,7 +240,7 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CEP)
-                            .addComponent(jTextCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextCidade)
@@ -270,7 +258,21 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Nome)
                             .addComponent(Complemento))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Telefone)
+                            .addComponent(jFormattedTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Email)
+                                .addGap(266, 266, 266))
+                            .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -283,16 +285,18 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
                     .addComponent(jComboBoxSelecionarTipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CPF)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(CPF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFormattedCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Telefone)
                             .addComponent(Email))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(Endereco)
                 .addGap(18, 18, 18)
@@ -316,9 +320,9 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSelecionarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxSelecionarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Complemento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -333,9 +337,6 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCPFActionPerformed
-    }//GEN-LAST:event_jTextCPFActionPerformed
 
     private void jTextRuaAvenidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextRuaAvenidaActionPerformed
     }//GEN-LAST:event_jTextRuaAvenidaActionPerformed
@@ -355,18 +356,18 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         //set pessoa
-        p.setNome(jTextNome.getText());
+        p.setNome(jTextNome.getText().toUpperCase());
         p.setTipoPessoa((String) jComboBoxSelecionarTipoPessoa.getSelectedItem());
-        p.setCpf(jTextCPF.getText());
-        p.setTelefone(jTextTelefone.getText());
+        p.setCpf(jFormattedCPF.getText());
+        p.setTelefone(jFormattedTelefone.getText());
         p.setEmail(jTextEmail.getText());
         //set endereço
         //e.setId();
-        e.setRuaAvenida(jTextRuaAvenida.getText());
-        e.setBairro(jTextBairro.getText());
+        e.setRuaAvenida(jTextRuaAvenida.getText().toUpperCase());
+        e.setBairro(jTextBairro.getText().toUpperCase());
         e.setNumero(jTextNumero.getText());
-        e.setCep(jTextCEP.getText());
-        e.setCidade(jTextCidade.getText());
+        e.setCep(jFormattedCEP.getText());
+        e.setCidade(jTextCidade.getText().toUpperCase());
         e.setUf((String) jComboBoxSelecionarEstado.getSelectedItem());
         e.setComplemento(jTextComplemento.getText());
         
@@ -379,14 +380,8 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
         dispose();//fecha a tela após salvar o cadastro
     }//GEN-LAST:event_SalvarActionPerformed
 
-    private void jTextTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefoneActionPerformed
-    }//GEN-LAST:event_jTextTelefoneActionPerformed
-
     private void jTextBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextBairroActionPerformed
     }//GEN-LAST:event_jTextBairroActionPerformed
-
-    private void jTextCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCEPActionPerformed
-    }//GEN-LAST:event_jTextCEPActionPerformed
 
     private void jTextComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextComplementoActionPerformed
     }//GEN-LAST:event_jTextComplementoActionPerformed
@@ -404,6 +399,10 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
             
         }
     }//GEN-LAST:event_jComboBoxSelecionarTipoPessoaActionPerformed
+
+    private void jFormattedCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedCPFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,15 +455,15 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
     private javax.swing.JLabel Telefone;
     private javax.swing.JComboBox<String> jComboBoxSelecionarEstado;
     private javax.swing.JComboBox<String> jComboBoxSelecionarTipoPessoa;
+    private javax.swing.JFormattedTextField jFormattedCEP;
+    private javax.swing.JFormattedTextField jFormattedCPF;
+    private javax.swing.JFormattedTextField jFormattedTelefone;
     private javax.swing.JTextField jTextBairro;
-    private javax.swing.JTextField jTextCEP;
-    private javax.swing.JTextField jTextCPF;
     private javax.swing.JTextField jTextCidade;
     private javax.swing.JTextField jTextComplemento;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextNome;
     private javax.swing.JTextField jTextNumero;
     private javax.swing.JTextField jTextRuaAvenida;
-    private javax.swing.JTextField jTextTelefone;
     // End of variables declaration//GEN-END:variables
 }

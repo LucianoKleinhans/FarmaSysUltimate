@@ -1,6 +1,8 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 @Entity
 public class Venda implements Serializable {
@@ -18,6 +21,8 @@ public class Venda implements Serializable {
     private String tipoPagamento;
     @ManyToOne
     private Pessoa pessoa;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataVenda;
     private Double valorTotal;
     @OneToMany(mappedBy = "venda")
     private List<ItemVenda> itensVenda;
@@ -42,6 +47,18 @@ public class Venda implements Serializable {
         this.pessoa = pessoa;
     }
 
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+    
+    public String getDataVendaFormatada() {
+        return new SimpleDateFormat("dd/MM/YY").format(dataVenda);
+    }
+    
     public String getTipoPagamento() {
         return tipoPagamento;
     }

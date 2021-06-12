@@ -62,4 +62,8 @@ public class Dao {
                 +" where 1=1 and "+a+" "
                 ,c).getResultList();
     }
+    public List listaNativeId(Class c, String a){
+        return em.createNativeQuery("select * from "+c.getSimpleName()+" where "+a+" ",c).getResultList();
+    }
+    
 }

@@ -32,7 +32,7 @@ public class TelaCadastroProduto extends javax.swing.JDialog {
         
         if(produto!=null){
             p = produto;
-            jTextNomeProduto.setText(p.getNome());
+            jTextNomeProduto.setText(p.getNome().toUpperCase());
             jSpinnerQuantidade.setValue(p.getQuantidadeEstoque());
             jTextFieldPreco.setText(p.getPreco().toString());
             jComboBoxTarja.setSelectedItem(p.getTarja());
@@ -237,7 +237,7 @@ public class TelaCadastroProduto extends javax.swing.JDialog {
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         //armazenagem de dados
-        p.setNome(jTextNomeProduto.getText());
+        p.setNome(jTextNomeProduto.getText().toUpperCase());
         p.setPreco(Double.parseDouble(jTextFieldPreco.getText()));
         p.setTarja((String)jComboBoxTarja.getSelectedItem());
         p.setClassificacao((String)jComboBoxClassificacao.getSelectedItem());
@@ -255,13 +255,13 @@ public class TelaCadastroProduto extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void jTextFieldPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPrecoActionPerformed
-
     private void jComboBoxClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassificacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxClassificacaoActionPerformed
+
+    private void jTextFieldPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPrecoActionPerformed
 
     /**
      * @param args the command line arguments

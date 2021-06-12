@@ -29,7 +29,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     private List<Produto> lista;
     private void carregaLista(){
         //lista = dao.listaNative(Produto.class);
-        lista = dao.listaNative(Produto.class,"nome like '%"+jtPesquisa.getText()+"%'");
+        lista = dao.listaNative(Produto.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
         
         String[] columnNames = new String[]{
           "ID","Nome Poduto","Tarja","Classificação","Vencimento","Qtd Estoque","Valor"

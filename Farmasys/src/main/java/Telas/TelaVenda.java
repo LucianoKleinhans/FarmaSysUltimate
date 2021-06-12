@@ -11,7 +11,10 @@ import Entidades.Produto;
 import Entidades.Venda;
 import dao.Dao;
 import java.awt.event.KeyEvent;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -101,6 +104,7 @@ public class TelaVenda extends javax.swing.JFrame {
         jtCodProduto = new javax.swing.JTextField();
         btRemover = new javax.swing.JButton();
         jSpinnerQTD = new javax.swing.JSpinner();
+        jButtonConsultaCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vendas");
@@ -241,6 +245,13 @@ public class TelaVenda extends javax.swing.JFrame {
             }
         });
 
+        jButtonConsultaCliente.setText("Consultar Clientes");
+        jButtonConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultaClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,8 +265,11 @@ public class TelaVenda extends javax.swing.JFrame {
                             .addComponent(CodCliente))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTexNomeCliente)
-                            .addComponent(NomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(NomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTexNomeCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonConsultaCliente))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -270,9 +284,9 @@ public class TelaVenda extends javax.swing.JFrame {
                                 .addComponent(Adicionar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btRemover)
-                                .addGap(0, 278, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -298,7 +312,8 @@ public class TelaVenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTexNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTexNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Codfuncionario2)
@@ -345,10 +360,21 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarVendaActionPerformed
 
     private void GerarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarVendaActionPerformed
-        venda.setTipoPagamento((String)jComboBoxMetodoPagamento.getSelectedItem());
-        venda.setValorTotal(Double.parseDouble(jtValorTotal.getText()));
-        dao.salvar(venda, pessoa);
-        dispose();
+        try {
+            if (jComboBoxMetodoPagamento.getSelectedItem().equals("Selecione")){
+                JOptionPane.showMessageDialog(rootPane,"Selecione um Metodo de pagamento válido");
+            }else{
+                venda.setTipoPagamento((String)jComboBoxMetodoPagamento.getSelectedItem());
+                venda.setValorTotal(Double.parseDouble(jtValorTotal.getText()));
+                Timestamp stamp = new Timestamp(System.currentTimeMillis());
+                Date date = new Date(stamp.getTime());
+                venda.setDataVenda(date);
+                dao.salvar(venda, pessoa);
+                dispose();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Campo não preenchido");
+        }
     }//GEN-LAST:event_GerarVendaActionPerformed
 
     private void jTextSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSubTotalActionPerformed
@@ -357,7 +383,8 @@ public class TelaVenda extends javax.swing.JFrame {
 
     private void AdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarActionPerformed
         // TODO add your handling code here:
-        if(produto!=null){
+        try {
+            if(produto!=null){
             
             ItemVenda it = new ItemVenda();
             it.setProduto(produto);
@@ -367,7 +394,11 @@ public class TelaVenda extends javax.swing.JFrame {
             venda.setPessoa(pessoa);
             venda.setItensVenda(it);
             atualizaTabela();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Produto Inexistente");
         }
+        
     }//GEN-LAST:event_AdicionarActionPerformed
 
     private void jtCodProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCodProdutoActionPerformed
@@ -375,9 +406,12 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jtCodProdutoActionPerformed
 
     private void jtCodProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCodProdutoKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             produto = (Produto) dao.findbyID(Produto.class,Integer.parseInt(jtCodProduto.getText()));
+            if(produto == null){
+                JOptionPane.showMessageDialog(rootPane,"Produto Inexistente");
+            }
+        }
     }//GEN-LAST:event_jtCodProdutoKeyPressed
 
     private void jtValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtValorTotalActionPerformed
@@ -386,24 +420,38 @@ public class TelaVenda extends javax.swing.JFrame {
 
     private void jTextCodClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCodClienteKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        try {
+            if(evt.getKeyCode()==KeyEvent.VK_ENTER){
         pessoa = (Pessoa) dao.findbyID(Pessoa.class,Integer.parseInt(jTextCodCliente.getText()));
+        jTexNomeCliente.setText(pessoa.getNome());}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Cliente Inexistente");
+        }
+        
     }//GEN-LAST:event_jTextCodClienteKeyPressed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        if(TabelaOrçamento.getSelectedRow()>-1){
-        venda.getItensVenda().remove((TabelaOrçamento.getSelectedRow()));
-        atualizaTabela();
+        try {
+            if(TabelaOrçamento.getSelectedRow()>-1){
+                venda.getItensVenda().remove((TabelaOrçamento.getSelectedRow()));
+                atualizaTabela();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Nenhum produto para Remover");
         }
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void jTexNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTexNomeClienteActionPerformed
-        jTexNomeCliente.setText(pessoa.getNome());
+        
     }//GEN-LAST:event_jTexNomeClienteActionPerformed
 
     private void jComboBoxMetodoPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMetodoPagamentoActionPerformed
          
     }//GEN-LAST:event_jComboBoxMetodoPagamentoActionPerformed
+
+    private void jButtonConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaClienteActionPerformed
+        new TelaCadastros().setVisible(true);
+    }//GEN-LAST:event_jButtonConsultaClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,6 +503,7 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JTable TabelaOrçamento;
     private javax.swing.JLabel ValorTotal;
     private javax.swing.JButton btRemover;
+    private javax.swing.JButton jButtonConsultaCliente;
     private javax.swing.JComboBox<String> jComboBoxMetodoPagamento;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerQTD;

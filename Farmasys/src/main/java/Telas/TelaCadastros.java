@@ -23,14 +23,19 @@ public class TelaCadastros extends javax.swing.JFrame {
     
     Dao dao = new Dao();
     private List <Pessoa> lista;
+    private Pessoa pessoa;
     
     public TelaCadastros() {
         initComponents();
         carregaLista();
     }
     private void carregaLista(){
-        
-        lista = dao.listaNative(Pessoa.class,"nome like '%"+jtPesquisa.getText()+"%'");
+        lista = dao.listaNative(Pessoa.class);
+        if(jComboBox1.getSelectedItem().equals("Nome")){
+            lista = dao.listaNative(Pessoa.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
+        }else if(jComboBox1.getSelectedItem().equals("CPF")){
+            lista = dao.listaNative(Pessoa.class,"cpf like '%"+jtPesquisa.getText()+"%'");
+        }      
         
         String[] columnNames = new String[]{
           "ID","Nome","CPF","Telefone","E-mail","Rua/Av","Num","Bairro","Cep","Cidade","UF"
@@ -69,6 +74,7 @@ public class TelaCadastros extends javax.swing.JFrame {
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jButton2.setText("jButton2");
 
@@ -144,6 +150,13 @@ public class TelaCadastros extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,16 +173,21 @@ public class TelaCadastros extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAdicionar)))
+                        .addComponent(jButtonAdicionar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSair)
@@ -216,8 +234,12 @@ public class TelaCadastros extends javax.swing.JFrame {
                 //teste
     private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        carregaLista();
+            carregaLista();
     }//GEN-LAST:event_jtPesquisaKeyPressed
+    Object tipoBusca;
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,6 +283,7 @@ public class TelaCadastros extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtPesquisa;
     // End of variables declaration//GEN-END:variables

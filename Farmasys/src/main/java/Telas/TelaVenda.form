@@ -35,8 +35,12 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTexNomeCliente" max="32767" attributes="0"/>
                           <Component id="NomeCliente" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jTexNomeCliente" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonConsultaCliente" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -55,10 +59,10 @@
                               <Component id="Adicionar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btRemover" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="278" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="691" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -94,6 +98,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTexNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonConsultaCliente" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -308,6 +313,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinnerQTD">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonConsultaCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Consultar Clientes"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConsultaClienteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
