@@ -30,7 +30,7 @@ public class TelaCadastros extends javax.swing.JFrame {
     }
     private void carregaLista(){
         
-        lista = dao.listaNative(Pessoa.class);
+        lista = dao.listaNative(Pessoa.class,"nome like '%"+jtPesquisa.getText()+"%'");
         
         String[] columnNames = new String[]{
           "ID","Nome","CPF","Telefone","E-mail","Rua/Av","Num","Bairro","Cep","Cidade","UF"
@@ -65,7 +65,6 @@ public class TelaCadastros extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaPessoas = new javax.swing.JTable();
         jtPesquisa = new javax.swing.JTextField();
-        jComboBoxCaixaSelecao = new javax.swing.JComboBox<>();
         jButtonRemover = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
@@ -117,8 +116,6 @@ public class TelaCadastros extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxCaixaSelecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "Cpf" }));
-
         jButtonRemover.setText("Remover");
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,9 +152,6 @@ public class TelaCadastros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jtPesquisa)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSair)
@@ -173,11 +167,9 @@ public class TelaCadastros extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSair)
@@ -223,9 +215,8 @@ public class TelaCadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverActionPerformed
                 //teste
     private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
-        Pessoa pessoa;
         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-           pessoa = (Pessoa) dao.findbyName(Pessoa.class,String.valueOf(jtPesquisa.getText()));
+        carregaLista();
     }//GEN-LAST:event_jtPesquisaKeyPressed
 
     /**
@@ -270,7 +261,6 @@ public class TelaCadastros extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JComboBox<String> jComboBoxCaixaSelecao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtPesquisa;
     // End of variables declaration//GEN-END:variables

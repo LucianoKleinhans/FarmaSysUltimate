@@ -391,7 +391,10 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextCodClienteKeyPressed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
+        if(TabelaOrçamento.getSelectedRow()>-1){
+        venda.getItensVenda().remove((TabelaOrçamento.getSelectedRow()));
+        atualizaTabela();
+        }
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void jTexNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTexNomeClienteActionPerformed

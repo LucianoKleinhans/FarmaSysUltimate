@@ -1,6 +1,7 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -87,4 +88,7 @@ public class Produto implements Serializable{
         this.dataVencimento = dataVencimento;
     }
     
+    public String getDataVencimentoFormatada() {
+        return new SimpleDateFormat("dd/MM/YY").format(dataVencimento);
+    }
 }

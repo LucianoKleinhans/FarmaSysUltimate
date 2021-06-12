@@ -34,18 +34,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTextSubTotal" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButtonFechar" pref="180" max="32767" attributes="0"/>
-                          <Component id="jTextAjuste" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTextValorTotal" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="SubTotal" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Ajuste" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ValorTotal" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="MetodoPagamento" alignment="0" pref="177" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="ValorTotal" max="32767" attributes="0"/>
                               <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jComboBoxMetodoPagamento" alignment="0" max="32767" attributes="0"/>
+                          <Component id="SubTotal" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -53,24 +47,21 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jtCodVenda" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                           <Component id="CodCliente1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Codfuncionario1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextField1" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="CodCliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Codfuncionario" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextCodFuncionario" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jTextCodCliente1" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="NomeFuncionario" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Codfuncionario1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextField1" min="-2" pref="168" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextCodCliente1" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="CodCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTexNomeCliente" max="32767" attributes="0"/>
                           <Component id="NomeCliente" max="32767" attributes="0"/>
-                          <Component id="jTexNomeCliente" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jTextNomeFuncionario" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -82,51 +73,44 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="NomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CodCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="CodCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Codfuncionario1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtCodVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="CodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextCodCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTexNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtCodVenda" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTexNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextCodCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="NomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Codfuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Codfuncionario1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextCodFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="SubTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextSubTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Ajuste" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextAjuste" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ValorTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextValorTotal" min="-2" pref="22" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="MetodoPagamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBoxMetodoPagamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                      <EmptySpace pref="307" max="32767" attributes="0"/>
                       <Component id="jButtonFechar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -150,58 +134,26 @@
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtCodVendaKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="MetodoPagamento">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xe9;todo de pagamento"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="NomeCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nome Cliente"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextSubTotal">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTexNomeCliente">
-    </Component>
-    <Component class="javax.swing.JLabel" name="Ajuste">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ajuste"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="Codfuncionario">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cod. Funcionario"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextAjuste">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextAjusteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextSubTotalActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextCodFuncionario">
+    <Component class="javax.swing.JTextField" name="jTexNomeCliente">
     </Component>
     <Component class="javax.swing.JLabel" name="ValorTotal">
       <Properties>
         <Property name="text" type="java.lang.String" value="Valor Total"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="NomeFuncionario">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nome Funcion&#xe1;rio"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="jTextValorTotal">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextValorTotalActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextNomeFuncionario">
-      <Properties>
-        <Property name="actionCommand" type="java.lang.String" value="null"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNomeFuncionarioActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonFechar">
@@ -265,21 +217,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCodCliente1ActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBoxMetodoPagamento">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Selecione"/>
-            <StringItem index="1" value="Dinheiro"/>
-            <StringItem index="2" value="Cart&#xe3;o D&#xe9;bito"/>
-            <StringItem index="3" value="Cart&#xe3;o Cr&#xe9;dito"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

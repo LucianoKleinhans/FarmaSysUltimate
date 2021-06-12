@@ -59,18 +59,11 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         CodCliente = new javax.swing.JLabel();
         SubTotal = new javax.swing.JLabel();
         jtCodVenda = new javax.swing.JTextField();
-        MetodoPagamento = new javax.swing.JLabel();
         NomeCliente = new javax.swing.JLabel();
         jTextSubTotal = new javax.swing.JTextField();
         jTexNomeCliente = new javax.swing.JTextField();
-        Ajuste = new javax.swing.JLabel();
-        Codfuncionario = new javax.swing.JLabel();
-        jTextAjuste = new javax.swing.JTextField();
-        jTextCodFuncionario = new javax.swing.JTextField();
         ValorTotal = new javax.swing.JLabel();
-        NomeFuncionario = new javax.swing.JLabel();
         jTextValorTotal = new javax.swing.JTextField();
-        jTextNomeFuncionario = new javax.swing.JTextField();
         jButtonFechar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaOrçamento = new javax.swing.JTable();
@@ -78,7 +71,6 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         Codfuncionario1 = new javax.swing.JLabel();
         CodCliente1 = new javax.swing.JLabel();
         jTextCodCliente1 = new javax.swing.JTextField();
-        jComboBoxMetodoPagamento = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Informação de relatório");
@@ -99,34 +91,19 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
             }
         });
 
-        MetodoPagamento.setText("Método de pagamento");
-
         NomeCliente.setText("Nome Cliente");
 
-        Ajuste.setText("Ajuste");
-
-        Codfuncionario.setText("Cod. Funcionario");
-
-        jTextAjuste.addActionListener(new java.awt.event.ActionListener() {
+        jTextSubTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAjusteActionPerformed(evt);
+                jTextSubTotalActionPerformed(evt);
             }
         });
 
         ValorTotal.setText("Valor Total");
 
-        NomeFuncionario.setText("Nome Funcionário");
-
         jTextValorTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextValorTotalActionPerformed(evt);
-            }
-        });
-
-        jTextNomeFuncionario.setActionCommand("null");
-        jTextNomeFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomeFuncionarioActionPerformed(evt);
             }
         });
 
@@ -200,8 +177,6 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxMetodoPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Dinheiro", "Cartão Débito", "Cartão Crédito" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,82 +190,64 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextSubTotal)
                             .addComponent(jButtonFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(jTextAjuste)
                             .addComponent(jTextValorTotal)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(SubTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Ajuste, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ValorTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(MetodoPagamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                                .addComponent(ValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(3, 3, 3))
-                            .addComponent(jComboBoxMetodoPagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(SubTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CodCliente1)
-                            .addComponent(Codfuncionario1)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CodCliente)
-                                .addComponent(Codfuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextCodFuncionario))
-                            .addComponent(jTextCodCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CodCliente1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTexNomeCliente, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextNomeFuncionario))))
+                            .addComponent(Codfuncionario1)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextCodCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CodCliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTexNomeCliente)
+                            .addComponent(NomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NomeCliente)
-                    .addComponent(CodCliente)
-                    .addComponent(CodCliente1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTexNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextCodCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NomeFuncionario)
-                    .addComponent(Codfuncionario)
-                    .addComponent(Codfuncionario1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextCodFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CodCliente1)
+                            .addComponent(Codfuncionario1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CodCliente)
+                            .addComponent(NomeCliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextCodCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTexNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SubTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Ajuste)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextAjuste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(ValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(MetodoPagamento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxMetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
                         .addComponent(jButtonFechar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -302,17 +259,9 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtCodVendaActionPerformed
 
-    private void jTextAjusteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAjusteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextAjusteActionPerformed
-
     private void jTextValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextValorTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextValorTotalActionPerformed
-
-    private void jTextNomeFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeFuncionarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomeFuncionarioActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         dispose();
@@ -333,6 +282,10 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
             codCliente = Integer.parseInt((jtCodVenda.getText()));
             carregaLista();
     }//GEN-LAST:event_jtCodVendaKeyPressed
+
+    private void jTextSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSubTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextSubTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,26 +324,18 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Ajuste;
     private javax.swing.JLabel CodCliente;
     private javax.swing.JLabel CodCliente1;
-    private javax.swing.JLabel Codfuncionario;
     private javax.swing.JLabel Codfuncionario1;
-    private javax.swing.JLabel MetodoPagamento;
     private javax.swing.JLabel NomeCliente;
-    private javax.swing.JLabel NomeFuncionario;
     private javax.swing.JLabel SubTotal;
     private javax.swing.JTable TabelaOrçamento;
     private javax.swing.JLabel ValorTotal;
     private javax.swing.JButton jButtonFechar;
-    private javax.swing.JComboBox<String> jComboBoxMetodoPagamento;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTexNomeCliente;
-    private javax.swing.JTextField jTextAjuste;
     private javax.swing.JTextField jTextCodCliente1;
-    private javax.swing.JTextField jTextCodFuncionario;
-    private javax.swing.JTextField jTextNomeFuncionario;
     private javax.swing.JTextField jTextSubTotal;
     private javax.swing.JTextField jTextValorTotal;
     private javax.swing.JTextField jtCodVenda;

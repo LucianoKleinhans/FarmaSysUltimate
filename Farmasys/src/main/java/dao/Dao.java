@@ -57,4 +57,9 @@ public class Dao {
             Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public List listaNative(Class c, String a){
+        return em.createNativeQuery("select * from "+c.getSimpleName()
+                +" where 1=1 and "+a+" "
+                ,c).getResultList();
+    }
 }
