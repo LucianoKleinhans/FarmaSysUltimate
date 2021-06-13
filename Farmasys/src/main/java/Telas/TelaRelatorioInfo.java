@@ -10,6 +10,7 @@ import Entidades.Venda;
 import dao.Dao;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,26 +26,43 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     Dao dao = new Dao();
     private ItemVenda itemVenda;
     private List <ItemVenda> lista;
+    private Venda venda;
+    double vruni = 0;
+    int qtd = 0;
+    double vrtotal = 0;
+    double subtotal = 0;
     
     public TelaRelatorioInfo() {
         initComponents();
         
+        
     }
     
     private void carregaLista(){
-        lista = dao.listaNative(ItemVenda.class);
+        //lista = dao.listaNative(ItemVenda.class);
+        lista = dao.listaNative(ItemVenda.class,"venda_id = '"+jtCodVenda.getText()+"'");
+            
         
         String[] columnNames = new String[]{
-            "Código","Nome produto","Quantidade","Vr unitário"
+            "Código produto","Nome produto","Quantidade","Vr unitário","Vr total"
         };
         Object[][] data = new Object[lista.size()][columnNames.length];
-            
-            data[codCliente][0] = lista.get(codCliente).getVenda().getId();
-            data[codCliente][1] = lista.get(codCliente).getProduto().getNome();
-            data[codCliente][2] = lista.get(codCliente).getQtdProduto();
-            data[codCliente][3] = lista.get(codCliente).getValorUnitario();
-            
-        TabelaOrçamento.setModel(new DefaultTableModel(data, columnNames));
+        //if(){
+            for (int i = 0; i < lista.size(); i++) {
+                vruni = venda.getItensVenda().get(i).getValorUnitario();
+                qtd = venda.getItensVenda().get(i).getQtdProduto();
+                vrtotal = vruni * qtd;
+                data[i][0] = lista.get(i).getProduto().getId();
+                data[i][1] = lista.get(i).getProduto().getNome();
+                data[i][2] = lista.get(i).getQtdProduto();
+                data[i][3] = lista.get(i).getValorUnitario();
+                data[i][4] = vrtotal;
+                subtotal = subtotal + vrtotal;
+            }
+            jTextSubTotal.setText(subtotal+"");
+            subtotal = 0;
+            TabelaOrçamento.setModel(new DefaultTableModel(data, columnNames));
+        //}
     }
 
     /**
@@ -67,7 +85,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         jButtonFechar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaOrçamento = new javax.swing.JTable();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedData = new javax.swing.JFormattedTextField();
         Codfuncionario1 = new javax.swing.JLabel();
         CodCliente1 = new javax.swing.JLabel();
         jTextCodCliente1 = new javax.swing.JTextField();
@@ -160,10 +178,10 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         TabelaOrçamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(TabelaOrçamento);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm - dd/MM/y"))));
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm - dd/MM/y"))));
+        jFormattedData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                jFormattedDataActionPerformed(evt);
             }
         });
 
@@ -203,7 +221,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Codfuncionario1)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedData, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextCodCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,7 +244,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFormattedData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CodCliente)
@@ -267,9 +285,9 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void jFormattedDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedDataActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_jFormattedDataActionPerformed
 
     private void jTextCodCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodCliente1ActionPerformed
         // TODO add your handling code here:
@@ -277,10 +295,18 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
 
     private void jtCodVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCodVendaKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-            //itemVenda = (ItemVenda) dao.findbyID(ItemVenda.class,Integer.parseInt((jtCodVenda.getText())));
-            codCliente = Integer.parseInt((jtCodVenda.getText()));
-            carregaLista();
+         try {
+            if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+                venda = (Venda) dao.findbyID(Venda.class,Integer.parseInt(jtCodVenda.getText()));
+                jFormattedData.setValue(venda.getDataVenda());
+                jTextCodCliente1.setText(venda.getPessoa().getId().toString());
+                jTexNomeCliente.setText(venda.getPessoa().getNome());
+                jTextValorTotal.setText(venda.getValorTotal()+"");
+                carregaLista();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Preenchimento incorreto");
+        }
     }//GEN-LAST:event_jtCodVendaKeyPressed
 
     private void jTextSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSubTotalActionPerformed
@@ -332,7 +358,7 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     private javax.swing.JTable TabelaOrçamento;
     private javax.swing.JLabel ValorTotal;
     private javax.swing.JButton jButtonFechar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedData;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTexNomeCliente;
     private javax.swing.JTextField jTextCodCliente1;

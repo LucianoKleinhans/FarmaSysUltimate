@@ -9,6 +9,7 @@ import Entidades.Pessoa;
 import dao.Dao;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,11 +32,18 @@ public class TelaCadastros extends javax.swing.JFrame {
     }
     private void carregaLista(){
         lista = dao.listaNative(Pessoa.class);
-        if(jComboBox1.getSelectedItem().equals("Nome")){
-            lista = dao.listaNative(Pessoa.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
-        }else if(jComboBox1.getSelectedItem().equals("CPF")){
-            lista = dao.listaNative(Pessoa.class,"cpf like '%"+jtPesquisa.getText()+"%'");
-        }      
+        try {
+            if(jComboBox1.getSelectedItem().equals("Nome")){
+                lista = dao.listaNative(Pessoa.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
+            }else if(jComboBox1.getSelectedItem().equals("CPF")){
+                lista = dao.listaNative(Pessoa.class,"cpf like '%"+jtPesquisa.getText()+"%'");
+            }else if(jComboBox1.getSelectedItem().equals("ID")){
+                lista = dao.listaNativeId(Pessoa.class, "id = '"+jtPesquisa.getText()+"'");
+            }    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Preenchimento não permitido");
+        }
+        
         
         String[] columnNames = new String[]{
           "ID","Nome","CPF","Telefone","E-mail","Rua/Av","Num","Bairro","Cep","Cidade","UF"
@@ -150,7 +158,7 @@ public class TelaCadastros extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF", "ID" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

@@ -6,6 +6,7 @@
 package Telas;
 
 import Entidades.ItemVenda;
+import Entidades.Pessoa;
 import Entidades.Venda;
 import dao.Dao;
 import java.awt.event.KeyEvent;
@@ -27,26 +28,32 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     }
        
     private List <ItemVenda> lista;
+    private List <Venda> listaVenda;
     private ItemVenda itemVenda;
     private Venda venda;
+    private Pessoa pessoa;
     Dao dao = new Dao();
     
-    
     private void carregaLista(){
-        lista = dao.listaNative(ItemVenda.class);
-        
+        listaVenda = dao.listaNative(Venda.class);
+        //if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Nome cliente")){
+          //  listaVenda = dao.listaNative(Venda.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
+        //}
         String[] columnNames = new String[]{
-            "Código","Nome produto","Quantidade","Vr unitário"
+            "Codigo de venda","Codigo cliente","Nome cliente","Vr total","Tipo pagamento","Data venda"
         };
-        Object[][] data = new Object[lista.size()][columnNames.length];
-        for (int i = 0; i < lista.size(); i++) {
-            data[i][0] = lista.get(i).getVenda().getId();
-            data[i][1] = lista.get(i).getProduto().getNome();
-            data[i][2] = lista.get(i).getQtdProduto();
-            data[i][3] = lista.get(i).getValorUnitario();
+        Object[][] data = new Object[listaVenda.size()][columnNames.length];
+        for (int i = 0; i < listaVenda.size(); i++) {
+            data[i][0] = listaVenda.get(i).getId();
+            data[i][1] = listaVenda.get(i).getPessoa().getId();
+            data[i][2] = listaVenda.get(i).getPessoa().getNome();
+            data[i][3] = listaVenda.get(i).getValorTotal();
+            data[i][4] = listaVenda.get(i).getTipoPagamento();
+            data[i][5] = listaVenda.get(i).getDataVendaFormatada();
         }
         TabelaBusca.setModel(new DefaultTableModel(data, columnNames));
     }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,62 +63,35 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
         jComboBoxSelecionarCodigo = new javax.swing.JComboBox<>();
-        jButtonBuscarData = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        jtPesquisa = new javax.swing.JTextField();
         jButtonSelecionar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jButtonBuscarCodigo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaBusca = new javax.swing.JTable();
         jButtonTelaCadastro = new javax.swing.JButton();
+        jButtonTelaRelatorioInfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Busca de relatório");
         setAutoRequestFocus(false);
         setResizable(false);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Período de data (de / até)");
-
-        jComboBoxSelecionarCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo Venda", "Codigo Cliente", "Codigo Vendedor" }));
+        jComboBoxSelecionarCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome cliente" }));
         jComboBoxSelecionarCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSelecionarCodigoActionPerformed(evt);
             }
         });
 
-        jButtonBuscarData.setText("Buscar");
-        jButtonBuscarData.addActionListener(new java.awt.event.ActionListener() {
+        jtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarDataActionPerformed(evt);
+                jtPesquisaActionPerformed(evt);
             }
         });
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField2KeyPressed(evt);
+                jtPesquisaKeyPressed(evt);
             }
         });
 
@@ -126,13 +106,6 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
-            }
-        });
-
-        jButtonBuscarCodigo.setText("Buscar");
-        jButtonBuscarCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarCodigoActionPerformed(evt);
             }
         });
 
@@ -172,6 +145,13 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
             }
         });
 
+        jButtonTelaRelatorioInfo.setText("Tela Informação");
+        jButtonTelaRelatorioInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTelaRelatorioInfoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,22 +166,11 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
                         .addComponent(jButtonSelecionar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBoxSelecionarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonBuscarCodigo))
-                            .addComponent(jTextField2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(50, 50, 50)
-                                .addComponent(jButtonBuscarData)))
+                            .addComponent(jtPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSelecionarCodigo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonTelaRelatorioInfo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonTelaCadastro)))
                 .addContainerGap())
         );
@@ -209,23 +178,13 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBoxSelecionarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButtonBuscarCodigo))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jButtonTelaCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jButtonBuscarData))
+                        .addComponent(jComboBoxSelecionarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonTelaRelatorioInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonTelaCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,34 +198,17 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
-
     private void jComboBoxSelecionarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxSelecionarCodigoActionPerformed
 
-    private void jButtonBuscarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarDataActionPerformed
+    private void jtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBuscarDataActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jtPesquisaActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
-
-    private void jButtonBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCodigoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButtonBuscarCodigoActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
         TelaRelatorioInfo frame = new TelaRelatorioInfo();
@@ -278,11 +220,17 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_jButtonTelaCadastroActionPerformed
 
-    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+    private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-            itemVenda = (ItemVenda) dao.findbyID(ItemVenda.class,Integer.parseInt(jTextField2.getText()));
-    }//GEN-LAST:event_jTextField2KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER);
+            
+    }//GEN-LAST:event_jtPesquisaKeyPressed
+
+    private void jButtonTelaRelatorioInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTelaRelatorioInfoActionPerformed
+        // TODO add your handling code here:
+        TelaRelatorioInfo frame = new TelaRelatorioInfo();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButtonTelaRelatorioInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,16 +269,12 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaBusca;
-    private javax.swing.JButton jButtonBuscarCodigo;
-    private javax.swing.JButton jButtonBuscarData;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSelecionar;
     private javax.swing.JButton jButtonTelaCadastro;
+    private javax.swing.JButton jButtonTelaRelatorioInfo;
     private javax.swing.JComboBox<String> jComboBoxSelecionarCodigo;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jtPesquisa;
     // End of variables declaration//GEN-END:variables
 }

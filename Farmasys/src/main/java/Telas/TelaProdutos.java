@@ -9,6 +9,7 @@ import Entidades.Produto;
 import dao.Dao;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,9 +28,18 @@ public class TelaProdutos extends javax.swing.JFrame {
     }
     Dao dao = new Dao();
     private List<Produto> lista;
+    
     private void carregaLista(){
-        //lista = dao.listaNative(Produto.class);
-        lista = dao.listaNative(Produto.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
+        lista = dao.listaNative(Produto.class);
+        try {
+            if(jComboBox.getSelectedItem().equals("Nome")){
+                lista = dao.listaNative(Produto.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
+            }else if(jComboBox.getSelectedItem().equals("Codigo")){
+                lista = dao.listaNativeId(Produto.class, "id = '"+jtPesquisa.getText()+"'");
+            }    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Preenchimento não permitido");
+        }
         
         String[] columnNames = new String[]{
           "ID","Nome Poduto","Tarja","Classificação","Vencimento","Qtd Estoque","Valor"
@@ -62,6 +72,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produtos");
@@ -109,6 +120,8 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Codigo" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,16 +138,21 @@ public class TelaProdutos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAdicionar)))
+                        .addComponent(jButtonAdicionar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSair)
@@ -226,6 +244,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtPesquisa;
     // End of variables declaration//GEN-END:variables
