@@ -17,7 +17,6 @@ import javax.swing.UIManager;
  * @author Luciano
  */
 public class TelaLogin extends javax.swing.JFrame {
-
     /**
      * Creates new form TelaLogin
      */
@@ -25,7 +24,6 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();    
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -120,11 +118,9 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     private void jTextLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextLoginActionPerformed
-
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
         try {
             List <Pessoa> p = dao.listaNative(Pessoa.class, "loginfuncionario = '"+jTextLogin.getText()+"'");
@@ -136,9 +132,8 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"Usuário ou senha Incorreto!");
         }
     }//GEN-LAST:event_EntrarActionPerformed
-
     private void LoginAdmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginAdmMouseClicked
-        if((jTextLogin.getText().equals(""))&&(jPasswordField1.getText().equals(""))){
+        if((jTextLogin.getText().equals("admin"))&&(jPasswordField1.getText().equals("admin"))){
             TelaPrincipal frame = new TelaPrincipal();
             frame.setVisible(true);
             dispose();
@@ -146,7 +141,6 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"Usuário ou senha de ADMIN está Incorreto!");
         }
     }//GEN-LAST:event_LoginAdmMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -157,9 +151,15 @@ public class TelaLogin extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         
-        UIManager.put("nimbusBase", Color.LIGHT_GRAY);
-        UIManager.put("nimbusBlueGrey", Color.LIGHT_GRAY);
-        UIManager.put("control", Color.LIGHT_GRAY);
+        UIManager.put("control", new Color(100,100,100));
+        UIManager.put("info", new Color(140,140,140));
+        UIManager.put("nimbusBase", new Color(100,100,100));
+        UIManager.put("nimbusBlueGrey", new Color(100,100,100));
+        UIManager.put("nimbusDisabledText", new Color(140,140,140));
+        UIManager.put("nimbusLightBackground", new Color(140,140,140));
+        UIManager.put("nimbusSelectedText", new Color(230,230,230));
+        UIManager.put("nimbusSelectionBackground", new Color(50,50,50));
+        UIManager.put("text", new Color(230,230,230));
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -178,7 +178,6 @@ public class TelaLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -186,7 +185,6 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Entrar;
     private javax.swing.JLabel Login;

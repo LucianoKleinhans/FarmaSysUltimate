@@ -8,6 +8,7 @@ package Telas;
 import Entidades.ItemVenda;
 import Entidades.Pessoa;
 import Entidades.Venda;
+
 import dao.Dao;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -26,19 +27,20 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         initComponents();
         carregaLista();
     }
-       
-    private List <ItemVenda> lista;
+    
     private List <Venda> listaVenda;
     private ItemVenda itemVenda;
-    private Venda venda;
-    private Pessoa pessoa;
     Dao dao = new Dao();
     
     private void carregaLista(){
         listaVenda = dao.listaNative(Venda.class);
-        //if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Nome cliente")){
-          //  listaVenda = dao.listaNative(Venda.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
-        //}
+        if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Nome cliente")){
+            listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.nome ilike '%"+jtPesquisa.getText().toUpperCase()+"%'");
+        }else if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Codigo cliente")){
+            listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.id = '"+jtPesquisa.getText()+"'");
+        }else if(jComboBoxSelecionarCodigo.getSelectedItem().equals("CPF cliente")){
+            listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.cpf ilike '%"+jtPesquisa.getText().toUpperCase()+"%'");
+        }
         String[] columnNames = new String[]{
             "Codigo de venda","Codigo cliente","Nome cliente","Vr total","Tipo pagamento","Data venda"
         };
@@ -77,7 +79,7 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setResizable(false);
 
-        jComboBoxSelecionarCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome cliente" }));
+        jComboBoxSelecionarCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome cliente", "Codigo cliente", "CPF cliente" }));
         jComboBoxSelecionarCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSelecionarCodigoActionPerformed(evt);
@@ -222,8 +224,8 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
 
     private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER);
-            
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        carregaLista();}       
     }//GEN-LAST:event_jtPesquisaKeyPressed
 
     private void jButtonTelaRelatorioInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTelaRelatorioInfoActionPerformed

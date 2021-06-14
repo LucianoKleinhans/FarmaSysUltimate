@@ -39,7 +39,7 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
             p = pessoa;
             e = p.getEndereco();
             jTextNome.setText(p.getNome().toUpperCase());
-            jComboBoxSelecionarTipoPessoa.setSelectedItem(p.getTipoPessoa());
+            //jComboBoxSelecionarTipoPessoa.setSelectedItem(p.getTipoPessoa());
             jFormattedCPF.setText(p.getCpf());
             jFormattedTelefone.setText(p.getTelefone());
             jTextEmail.setText(p.getEmail());

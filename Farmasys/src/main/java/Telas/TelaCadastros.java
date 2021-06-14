@@ -92,30 +92,12 @@ public class TelaCadastros extends javax.swing.JFrame {
 
         TabelaPessoas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Codigo", "Nome", "CPF", "Telefone", "Endereço", "E-Mail"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         TabelaPessoas.setToolTipText("");
         jScrollPane1.setViewportView(TabelaPessoas);
 
@@ -192,10 +174,10 @@ public class TelaCadastros extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSair)
@@ -231,18 +213,21 @@ public class TelaCadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        // TODO add your handling code here:
-                if(TabelaPessoas.getSelectedRow()>-1){
-                dao.remove(
-                lista.get(TabelaPessoas.getSelectedRow())
-            );
-        carregaLista();
+        try {
+            if(TabelaPessoas.getSelectedRow()>-1){
+                dao.remove(lista.get(TabelaPessoas.getSelectedRow()));
+                carregaLista();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Ação não permitida!"+"\nPessoa em uso em outra tabela, não pode ser removida!");
+            dispose();
         }
+             
     }//GEN-LAST:event_jButtonRemoverActionPerformed
                 //teste
     private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-            carregaLista();
+        carregaLista();
     }//GEN-LAST:event_jtPesquisaKeyPressed
     Object tipoBusca;
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

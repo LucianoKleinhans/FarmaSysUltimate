@@ -58,10 +58,12 @@ public class Dao {
         }
     }
     public List listaNative(Class c, String a){
-        return em.createNativeQuery("select * from "+c.getSimpleName()
-                +" where 1=1 and "+a+" "
-                ,c).getResultList();
+        return em.createNativeQuery("select * from "+c.getSimpleName()+" where 1=1 and "+a+" ",c).getResultList();
     }
+    public List listaNativeNomeVenda(Class c, String a){
+        return em.createNativeQuery("select v.* from venda v join pessoa p on v.pessoa_id = p.id where "+a+" ",c).getResultList();
+    }
+    
     public List listaNativeId(Class c, String a){
         return em.createNativeQuery("select * from "+c.getSimpleName()+" where "+a+" ",c).getResultList();
     }
