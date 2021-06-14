@@ -30,7 +30,6 @@ public class TelaVenda extends javax.swing.JFrame {
     private Venda venda;
     private Produto produto;
     Dao dao = new Dao();
-    private List<ItemVenda> itemVenda;
     private List<ItemVenda> lista;
     
     double vrtotal = 0;

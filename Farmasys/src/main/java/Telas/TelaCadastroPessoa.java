@@ -21,7 +21,6 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
     Pessoa p;
     Endereco e;
     
-    private Object o;
     /**
      * Creates new form TelaCadastroCliente
      */

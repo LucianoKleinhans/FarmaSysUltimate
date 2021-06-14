@@ -40,14 +40,13 @@ public class TelaLogin extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         LoginAdm = new javax.swing.JLabel();
+        LoginDM = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FarmaSysUltimate");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setIconImages(null);
-        setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
-        setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);
 
         Login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -79,6 +78,14 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        LoginDM.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        LoginDM.setText("Ativar DarkMode");
+        LoginDM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginDMMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,7 +99,10 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(Entrar, javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(LoginAdm))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LoginAdm)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LoginDM)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,7 +121,9 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(Entrar)
                 .addGap(7, 7, 7)
-                .addComponent(LoginAdm)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoginAdm)
+                    .addComponent(LoginDM))
                 .addContainerGap())
         );
 
@@ -141,6 +153,21 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"Usuário ou senha de ADMIN está Incorreto!");
         }
     }//GEN-LAST:event_LoginAdmMouseClicked
+
+    private void LoginDMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginDMMouseClicked
+        UIManager.put("control", new Color(100,100,100));
+        UIManager.put("info", new Color(140,140,140));
+        UIManager.put("nimbusBase", new Color(100,100,100));
+        UIManager.put("nimbusBlueGrey", new Color(100,100,100));
+        UIManager.put("nimbusDisabledText", new Color(140,140,140));
+        UIManager.put("nimbusLightBackground", new Color(140,140,140));
+        UIManager.put("nimbusSelectedText", new Color(230,230,230));
+        UIManager.put("nimbusSelectionBackground", new Color(50,50,50));
+        UIManager.put("text", new Color(230,230,230));
+        TelaLogin frame = new TelaLogin();
+        frame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_LoginDMMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -151,15 +178,6 @@ public class TelaLogin extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         
-        UIManager.put("control", new Color(100,100,100));
-        UIManager.put("info", new Color(140,140,140));
-        UIManager.put("nimbusBase", new Color(100,100,100));
-        UIManager.put("nimbusBlueGrey", new Color(100,100,100));
-        UIManager.put("nimbusDisabledText", new Color(140,140,140));
-        UIManager.put("nimbusLightBackground", new Color(140,140,140));
-        UIManager.put("nimbusSelectedText", new Color(230,230,230));
-        UIManager.put("nimbusSelectionBackground", new Color(50,50,50));
-        UIManager.put("text", new Color(230,230,230));
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -189,6 +207,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton Entrar;
     private javax.swing.JLabel Login;
     private javax.swing.JLabel LoginAdm;
+    private javax.swing.JLabel LoginDM;
     private javax.swing.JLabel Senha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;

@@ -72,6 +72,7 @@ Telas\TelaRelatorioInfo.class
 Telas\TelaCadastros.class
 Telas\TelaVenda$6.class
 Telas\TelaRelatorioBusca$9.class
+Telas\TelaLogin$5.class
 Entidades\Venda.class
 Telas\TelaCadastros$2.class
 Telas\TelaNovoLogin$5.class

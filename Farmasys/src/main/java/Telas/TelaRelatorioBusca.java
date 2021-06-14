@@ -5,13 +5,12 @@
  */
 package Telas;
 
-import Entidades.ItemVenda;
-import Entidades.Pessoa;
 import Entidades.Venda;
 
 import dao.Dao;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,18 +28,23 @@ public class TelaRelatorioBusca extends javax.swing.JFrame {
     }
     
     private List <Venda> listaVenda;
-    private ItemVenda itemVenda;
     Dao dao = new Dao();
     
     private void carregaLista(){
         listaVenda = dao.listaNative(Venda.class);
-        if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Nome cliente")){
-            listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.nome ilike '%"+jtPesquisa.getText().toUpperCase()+"%'");
-        }else if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Codigo cliente")){
-            listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.id = '"+jtPesquisa.getText()+"'");
-        }else if(jComboBoxSelecionarCodigo.getSelectedItem().equals("CPF cliente")){
-            listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.cpf ilike '%"+jtPesquisa.getText().toUpperCase()+"%'");
+        try {
+            if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Nome cliente")){
+                listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.nome ilike '%"+jtPesquisa.getText().toUpperCase()+"%'");
+            }else if(jComboBoxSelecionarCodigo.getSelectedItem().equals("Codigo cliente")){
+                listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.id = '"+jtPesquisa.getText()+"'");
+            }else if(jComboBoxSelecionarCodigo.getSelectedItem().equals("CPF cliente")){
+                listaVenda = dao.listaNativeNomeVenda(Venda.class,"p.cpf ilike '%"+jtPesquisa.getText().toUpperCase()+"%'");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Preenchimento não permitido");
         }
+        
+        
         String[] columnNames = new String[]{
             "Codigo de venda","Codigo cliente","Nome cliente","Vr total","Tipo pagamento","Data venda"
         };

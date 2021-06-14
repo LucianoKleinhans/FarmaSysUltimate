@@ -124,7 +124,7 @@ public class TelaCadastroProduto extends javax.swing.JDialog {
 
         jLabel7.setText("Tarja");
 
-        jComboBoxClassificacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Referência", "Similares", "Genéricos." }));
+        jComboBoxClassificacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Referência", "Similares", "Genéricos" }));
         jComboBoxClassificacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxClassificacaoActionPerformed(evt);

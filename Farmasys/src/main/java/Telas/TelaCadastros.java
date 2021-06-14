@@ -24,7 +24,6 @@ public class TelaCadastros extends javax.swing.JFrame {
     
     Dao dao = new Dao();
     private List <Pessoa> lista;
-    private Pessoa pessoa;
     
     public TelaCadastros() {
         initComponents();

@@ -72,11 +72,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="CodCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Codfuncionario1" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="CodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="NomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="CodCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

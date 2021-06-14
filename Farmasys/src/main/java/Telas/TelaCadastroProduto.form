@@ -234,7 +234,7 @@
               <StringArray count="3">
                 <StringItem index="0" value="Refer&#xea;ncia"/>
                 <StringItem index="1" value="Similares"/>
-                <StringItem index="2" value="Gen&#xe9;ricos."/>
+                <StringItem index="2" value="Gen&#xe9;ricos"/>
               </StringArray>
             </Property>
           </Properties>

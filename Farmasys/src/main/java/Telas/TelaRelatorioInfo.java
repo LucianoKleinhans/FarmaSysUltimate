@@ -24,7 +24,6 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
      */
     int codCliente = 0;
     Dao dao = new Dao();
-    private ItemVenda itemVenda;
     private List <ItemVenda> lista;
     private Venda venda;
     double vruni = 0;
@@ -39,7 +38,6 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
     }
     
     private void carregaLista(){
-        //lista = dao.listaNative(ItemVenda.class);
         lista = dao.listaNative(ItemVenda.class,"venda_id = '"+jtCodVenda.getText()+"'");
             
         
@@ -47,7 +45,6 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
             "Código produto","Nome produto","Quantidade","Vr unitário","Vr total"
         };
         Object[][] data = new Object[lista.size()][columnNames.length];
-        //if(){
             for (int i = 0; i < lista.size(); i++) {
                 vruni = venda.getItensVenda().get(i).getValorUnitario();
                 qtd = venda.getItensVenda().get(i).getQtdProduto();
@@ -62,7 +59,6 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
             jTextSubTotal.setText(subtotal+"");
             subtotal = 0;
             TabelaOrçamento.setModel(new DefaultTableModel(data, columnNames));
-        //}
     }
 
     /**
@@ -216,11 +212,12 @@ public class TelaRelatorioInfo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CodCliente1)
-                    .addComponent(Codfuncionario1)
-                    .addComponent(CodCliente)
-                    .addComponent(NomeCliente))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Codfuncionario1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CodCliente1)
+                        .addComponent(CodCliente)
+                        .addComponent(NomeCliente)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
