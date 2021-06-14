@@ -5,8 +5,6 @@
     <class>Entidades.Endereco</class>
     <class>Entidades.Pessoa</class>
     <class>Entidades.Produto</class>
-    <class>Entidades.RelatorioVenda</class>
-    <class>Entidades.TipoPagamento</class>
     <class>Entidades.Venda</class>
     <class>Entidades.ItemVenda</class>
     <properties>

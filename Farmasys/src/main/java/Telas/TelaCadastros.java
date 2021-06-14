@@ -9,6 +9,7 @@ import Entidades.Pessoa;
 import dao.Dao;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,14 +24,26 @@ public class TelaCadastros extends javax.swing.JFrame {
     
     Dao dao = new Dao();
     private List <Pessoa> lista;
+    private Pessoa pessoa;
     
     public TelaCadastros() {
         initComponents();
         carregaLista();
     }
     private void carregaLista(){
-        
         lista = dao.listaNative(Pessoa.class);
+        try {
+            if(jComboBox1.getSelectedItem().equals("Nome")){
+                lista = dao.listaNative(Pessoa.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
+            }else if(jComboBox1.getSelectedItem().equals("CPF")){
+                lista = dao.listaNative(Pessoa.class,"cpf like '%"+jtPesquisa.getText()+"%'");
+            }else if(jComboBox1.getSelectedItem().equals("ID")){
+                lista = dao.listaNativeId(Pessoa.class, "id = '"+jtPesquisa.getText()+"'");
+            }    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Preenchimento não permitido");
+        }
+        
         
         String[] columnNames = new String[]{
           "ID","Nome","CPF","Telefone","E-mail","Rua/Av","Num","Bairro","Cep","Cidade","UF"
@@ -65,13 +78,11 @@ public class TelaCadastros extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaPessoas = new javax.swing.JTable();
         jtPesquisa = new javax.swing.JTextField();
-        jComboBoxCaixaSelecao = new javax.swing.JComboBox<>();
         jButtonRemover = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jButtonSelecionar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jButton2.setText("jButton2");
 
@@ -81,30 +92,12 @@ public class TelaCadastros extends javax.swing.JFrame {
 
         TabelaPessoas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Codigo", "Nome", "CPF", "Telefone", "Endereço", "E-Mail"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         TabelaPessoas.setToolTipText("");
         jScrollPane1.setViewportView(TabelaPessoas);
 
@@ -118,8 +111,6 @@ public class TelaCadastros extends javax.swing.JFrame {
                 jtPesquisaKeyPressed(evt);
             }
         });
-
-        jComboBoxCaixaSelecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "Cpf" }));
 
         jButtonRemover.setText("Remover");
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -149,19 +140,10 @@ public class TelaCadastros extends javax.swing.JFrame {
             }
         });
 
-        jButtonSelecionar.setText("Selecionar");
-        jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF", "ID" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSelecionarActionPerformed(evt);
-            }
-        });
-
-        jButton1.setMnemonic('_');
-        jButton1.setText("Refresh");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -172,32 +154,26 @@ public class TelaCadastros extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(jtPesquisa)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSelecionar))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 674, Short.MAX_VALUE)
                         .addComponent(jButtonRemover)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAdicionar)))
+                        .addComponent(jButtonAdicionar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxCaixaSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSelecionar)
-                    .addComponent(jButton1))
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,14 +199,10 @@ public class TelaCadastros extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        TelaCadastroPessoa frame = new TelaCadastroPessoa();
-        frame.setVisible(true);
-    }//GEN-LAST:event_jButtonSelecionarActionPerformed
-
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         TelaCadastroPessoa frame = new TelaCadastroPessoa();
         frame.setVisible(true);
+        carregaLista();
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
@@ -240,26 +212,27 @@ public class TelaCadastros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        carregaLista();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        // TODO add your handling code here:
-                if(TabelaPessoas.getSelectedRow()>-1){
-                dao.remove(
-                lista.get(TabelaPessoas.getSelectedRow())
-            );
-        carregaLista();
+        try {
+            if(TabelaPessoas.getSelectedRow()>-1){
+                dao.remove(lista.get(TabelaPessoas.getSelectedRow()));
+                carregaLista();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Ação não permitida!"+"\nPessoa em uso em outra tabela, não pode ser removida!");
+            dispose();
         }
+             
     }//GEN-LAST:event_jButtonRemoverActionPerformed
                 //teste
     private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
-        //Pessoa pessoa;
-        // TODO add your handling code here:
-        //if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-           //pessoa = (Pessoa) dao.findbyNome(Pessoa.class.getField(jtPesquisa.getText()));
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        carregaLista();
     }//GEN-LAST:event_jtPesquisaKeyPressed
+    Object tipoBusca;
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,14 +271,12 @@ public class TelaCadastros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaPessoas;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JButton jButtonSelecionar;
-    private javax.swing.JComboBox<String> jComboBoxCaixaSelecao;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtPesquisa;
     // End of variables declaration//GEN-END:variables

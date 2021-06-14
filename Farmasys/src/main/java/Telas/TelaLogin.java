@@ -5,23 +5,25 @@
  */
 package Telas;
 
+import Entidades.Pessoa;
 import dao.Dao;
+import java.awt.Color;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
  * @author Luciano
  */
 public class TelaLogin extends javax.swing.JFrame {
-
     /**
      * Creates new form TelaLogin
      */
+    Dao dao = new Dao();
     public TelaLogin() {
-        initComponents();
-        Dao dao = new Dao();
+        initComponents();    
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,6 +39,7 @@ public class TelaLogin extends javax.swing.JFrame {
         Entrar = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        LoginAdm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FarmaSysUltimate");
@@ -68,19 +71,28 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoAmogosFarmasys400x120.png"))); // NOI18N
 
+        LoginAdm.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        LoginAdm.setText("Entrar como Administrador");
+        LoginAdm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginAdmMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Entrar)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextLogin, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Login, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Senha, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Entrar, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(LoginAdm))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,29 +108,39 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(Senha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(Entrar)
-                .addGap(29, 29, 29))
+                .addGap(7, 7, 7)
+                .addComponent(LoginAdm)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     private void jTextLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextLoginActionPerformed
-
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
-        if(jTextLogin.getText().equals("")&&(jPasswordField1.getText().equals(""))){
+        try {
+            List <Pessoa> p = dao.listaNative(Pessoa.class, "loginfuncionario = '"+jTextLogin.getText()+"'");
+            if(p != null&&(jPasswordField1.getText().equals(p.get(0).getSenhaLoginFuncionario()))){
+            TelaPrincipal frame = new TelaPrincipal();
+            frame.setVisible(true);
+            dispose();
+        }} catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Usuário ou senha Incorreto!");
+        }
+    }//GEN-LAST:event_EntrarActionPerformed
+    private void LoginAdmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginAdmMouseClicked
+        if((jTextLogin.getText().equals("admin"))&&(jPasswordField1.getText().equals("admin"))){
             TelaPrincipal frame = new TelaPrincipal();
             frame.setVisible(true);
             dispose();
         }else{
-            JOptionPane.showMessageDialog(rootPane,"Usuário ou senha Incorreto!");
+            JOptionPane.showMessageDialog(rootPane,"Usuário ou senha de ADMIN está Incorreto!");
         }
-    }//GEN-LAST:event_EntrarActionPerformed
-
+    }//GEN-LAST:event_LoginAdmMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -128,6 +150,17 @@ public class TelaLogin extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+        UIManager.put("control", new Color(100,100,100));
+        UIManager.put("info", new Color(140,140,140));
+        UIManager.put("nimbusBase", new Color(100,100,100));
+        UIManager.put("nimbusBlueGrey", new Color(100,100,100));
+        UIManager.put("nimbusDisabledText", new Color(140,140,140));
+        UIManager.put("nimbusLightBackground", new Color(140,140,140));
+        UIManager.put("nimbusSelectedText", new Color(230,230,230));
+        UIManager.put("nimbusSelectionBackground", new Color(50,50,50));
+        UIManager.put("text", new Color(230,230,230));
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -145,7 +178,6 @@ public class TelaLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -153,10 +185,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Entrar;
     private javax.swing.JLabel Login;
+    private javax.swing.JLabel LoginAdm;
     private javax.swing.JLabel Senha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;

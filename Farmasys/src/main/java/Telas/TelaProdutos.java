@@ -7,7 +7,9 @@ package Telas;
 
 import Entidades.Produto;
 import dao.Dao;
+import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,8 +28,18 @@ public class TelaProdutos extends javax.swing.JFrame {
     }
     Dao dao = new Dao();
     private List<Produto> lista;
+    
     private void carregaLista(){
         lista = dao.listaNative(Produto.class);
+        try {
+            if(jComboBox.getSelectedItem().equals("Nome")){
+                lista = dao.listaNative(Produto.class,"nome like '%"+jtPesquisa.getText().toUpperCase()+"%'");
+            }else if(jComboBox.getSelectedItem().equals("Codigo")){
+                lista = dao.listaNativeId(Produto.class, "id = '"+jtPesquisa.getText()+"'");
+            }    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Preenchimento não permitido");
+        }
         
         String[] columnNames = new String[]{
           "ID","Nome Poduto","Tarja","Classificação","Vencimento","Qtd Estoque","Valor"
@@ -38,7 +50,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             data[i][1] = lista.get(i).getNome();
             data[i][2] = lista.get(i).getTarja();
             data[i][3] = lista.get(i).getClassificacao();
-            data[i][4] = lista.get(i).getDataVencimento();
+            data[i][4] = lista.get(i).getDataVencimentoFormatada();
             data[i][5] = lista.get(i).getQuantidadeEstoque();       
             data[i][6] = lista.get(i).getPreco();       
         }
@@ -55,14 +67,12 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaProdutos = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        SelecaoCodigo = new javax.swing.JComboBox<>();
+        jtPesquisa = new javax.swing.JTextField();
         jButtonRemover = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jButtonSelecionar = new javax.swing.JButton();
-        jButtonSelecionar1 = new javax.swing.JButton();
+        jComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produtos");
@@ -71,13 +81,16 @@ public class TelaProdutos extends javax.swing.JFrame {
         TabelaProdutos.setToolTipText("");
         jScrollPane1.setViewportView(TabelaProdutos);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtPesquisaActionPerformed(evt);
             }
         });
-
-        SelecaoCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome" }));
+        jtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtPesquisaKeyPressed(evt);
+            }
+        });
 
         jButtonRemover.setText("Remover");
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -107,19 +120,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
-        jButtonSelecionar.setText("Selecionar");
-        jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSelecionarActionPerformed(evt);
-            }
-        });
-
-        jButtonSelecionar1.setText("Refresh");
-        jButtonSelecionar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSelecionar1ActionPerformed(evt);
-            }
-        });
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Codigo" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,34 +129,28 @@ public class TelaProdutos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(SelecaoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSelecionar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSelecionar))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jtPesquisa)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 674, Short.MAX_VALUE)
                         .addComponent(jButtonRemover)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAdicionar)))
+                        .addComponent(jButtonAdicionar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SelecaoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSelecionar)
-                    .addComponent(jButtonSelecionar1))
+                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -171,29 +166,24 @@ public class TelaProdutos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtPesquisaActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSelecionarActionPerformed
-
-    private void jButtonSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionar1ActionPerformed
-        carregaLista();
-    }//GEN-LAST:event_jButtonSelecionar1ActionPerformed
-
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        if(TabelaProdutos.getSelectedRow()>-1){
-            dao.remove(
-                lista.get(TabelaProdutos.getSelectedRow())
-            );
-        carregaLista();
+        try {
+           if(TabelaProdutos.getSelectedRow()>-1){
+                dao.remove(lista.get(TabelaProdutos.getSelectedRow()));
+                carregaLista();
+            } 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Ação não permitida!"+"\nProduto em uso em outra tabela, não pode ser removida!");
+            dispose();
         }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
@@ -210,6 +200,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         carregaLista();
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
+            if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        carregaLista();
+    }//GEN-LAST:event_jtPesquisaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -247,15 +242,13 @@ public class TelaProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> SelecaoCodigo;
     private javax.swing.JTable TabelaProdutos;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JButton jButtonSelecionar;
-    private javax.swing.JButton jButtonSelecionar1;
+    private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtPesquisa;
     // End of variables declaration//GEN-END:variables
 }

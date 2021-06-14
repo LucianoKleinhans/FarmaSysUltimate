@@ -27,6 +27,7 @@ public class ItemVenda implements Serializable {
     private Venda venda;
     private Integer qtdProduto;
     private Double valorUnitario;
+    
 
     public Integer getId() {
         return id;

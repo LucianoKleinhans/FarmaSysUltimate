@@ -19,6 +19,7 @@ public class Pessoa implements Serializable{
     @OneToOne
     private Endereco endereco;
     private String tipoPessoa; //Cliente ou funcionario (se nao for funcionario os elementos de login e senha receberão NULL)
+    
     //Login e senha funcionário//
     private String loginFuncionario;
     private String senhaLoginFuncionario;

@@ -46,9 +46,7 @@ public class Dao {
     public Object findbyID(Class c,int id){
         return em.find(c, id);
     }
-    public Object findbyNome(Class c,String nome){
-        return em.find(c, nome);
-    }
+    
     public Dao()  {
         try {
             this.connection = DriverManager.
@@ -59,4 +57,15 @@ public class Dao {
             Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public List listaNative(Class c, String a){
+        return em.createNativeQuery("select * from "+c.getSimpleName()+" where 1=1 and "+a+" ",c).getResultList();
+    }
+    public List listaNativeNomeVenda(Class c, String a){
+        return em.createNativeQuery("select v.* from venda v join pessoa p on v.pessoa_id = p.id where "+a+" ",c).getResultList();
+    }
+    
+    public List listaNativeId(Class c, String a){
+        return em.createNativeQuery("select * from "+c.getSimpleName()+" where "+a+" ",c).getResultList();
+    }
+    
 }
